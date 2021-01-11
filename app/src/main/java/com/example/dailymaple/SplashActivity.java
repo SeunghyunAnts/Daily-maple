@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.MotionEvent;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 public class SplashActivity extends AppCompatActivity {
@@ -33,3 +31,4 @@ public class SplashActivity extends AppCompatActivity {
         handler.sendEmptyMessageDelayed(0, 2000);
     }
 }
+

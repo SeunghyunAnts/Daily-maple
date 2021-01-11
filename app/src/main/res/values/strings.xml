@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DailyMaple</string>
+    <string name="kakao_app_key">e39f6f7262813ee60949d56d29f50cbb</string>
 </resources>
