@@ -9,9 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyMaple">
+
         <activity android:name=".AddPopupActivity" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"></activity>
         <activity android:name=".MainActivity" />
+
         <activity android:name=".CharacterActivity">
+
+        </activity>
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
