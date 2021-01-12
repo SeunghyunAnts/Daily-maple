@@ -17,6 +17,7 @@ public class CharacterActivity extends AppCompatActivity {
     Intent intent, intentFromLogin;
     ImageView[] imageViews_plus;
     FrameLayout[] frameLayouts;
+    View character; // TODO: should be changed array
     int[] imageViews_plus_id = {R.id.imageView_plus1, R.id.imageView_plus2, R.id.imageView_plus3,
                                 R.id.imageView_plus4, R.id.imageView_plus5, R.id.imageView_plus6,
                                 R.id.imageView_plus7, R.id.imageView_plus8, R.id.imageView_plus9,
@@ -64,6 +65,9 @@ public class CharacterActivity extends AppCompatActivity {
         intentFromLogin = getIntent();
         Log.d("platform", intentFromLogin.getStringExtra("platform"));
         Log.d("id", intentFromLogin.getStringExtra("id"));
+
+        character = findViewById(R.id.character);
+        character.setOnClickListener(this::onClickCharacter);
     }
 
     public void onClickPlus(View v){
@@ -71,6 +75,11 @@ public class CharacterActivity extends AppCompatActivity {
 //        startActivity(intent);
         intent.putExtra("btn_id",v.getId());
         startActivityForResult(intent, 1);
+    }
+
+    public void onClickCharacter(View v){
+        intent = new Intent(this, ViewProgressActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -85,7 +94,7 @@ public class CharacterActivity extends AppCompatActivity {
                 for(int i=0;i<imageViews_plus_id.length;i++){
                     if(imageViews_plus_id[i]==btn_id){
                         System.out.println("i2 : "+i);
-                        imageViews_plus[i].setVisibility(View.INVISIBLE);
+                        imageViews_plus[i].setVisibility(View.GONE);
                         if((i+1)%3==0 && i!=imageViews_plus_id.length-1){
                             tableRows[(i+1)/3].setVisibility(View.VISIBLE);
                             break;
