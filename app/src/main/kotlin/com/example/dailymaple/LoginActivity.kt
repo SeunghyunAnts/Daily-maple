@@ -30,10 +30,10 @@ class LoginActivity : AppCompatActivity() {
             if (error != null) {
                 Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
             }
-            else if (tokenInfo != null) {
-                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
-                successKakaoAuth()
-            }
+//            else if (tokenInfo != null) {
+//                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+//                successKakaoAuth()
+//            }
         }
 
         // onClick 이벤트 처리
@@ -98,7 +98,7 @@ class LoginActivity : AppCompatActivity() {
                         "\n회원번호: ${user.id}")
 
                 // 정보 요청 성공 시 메인 액티비티로 전환
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, CharacterActivity::class.java)
                 intent.putExtra("platform", "Kakao")
                 intent.putExtra("id", id)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
