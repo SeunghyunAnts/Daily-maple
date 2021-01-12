@@ -69,7 +69,8 @@
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
+                        android:src="@drawable/plus"
+                        android:visibility="visible" />
 
                 </FrameLayout>
 
