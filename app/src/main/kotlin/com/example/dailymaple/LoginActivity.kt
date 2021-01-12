@@ -3,20 +3,27 @@ package com.example.dailymaple
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause.*
 import com.kakao.sdk.user.UserApiClient
-import com.kakao.sdk.user.model.AccessTokenInfo
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var kakao_login_button: ImageButton
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        var kakao_login_button: ImageButton = findViewById(R.id.kakao_login_button)
+        kakao_login_button = findViewById(R.id.kakao_login_button)
+        auth = Firebase.auth
 
         // 카카오 자동 로그인
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
@@ -25,8 +32,7 @@ class LoginActivity : AppCompatActivity() {
             }
             else if (tokenInfo != null) {
                 Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                successKakaoAuth()
             }
         }
 
@@ -75,8 +81,28 @@ class LoginActivity : AppCompatActivity() {
         }
         else if (token != null) {
             Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            successKakaoAuth()
+        }
+    }
+
+    fun successKakaoAuth() {
+        // 사용자 정보 요청
+        lateinit var id: String
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                Log.e("Fail", "사용자 정보 요청 실패", error)
+            }
+            else if (user != null) {
+                id = user.id.toString()
+                Log.i("Success", "사용자 정보 요청 성공" +
+                        "\n회원번호: ${user.id}")
+
+                // 정보 요청 성공 시 메인 액티비티로 전환
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("platform", "Kakao")
+                intent.putExtra("id", id)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -42,11 +43,25 @@ dependencies {
 
     // firebase
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
-    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-analytics:18.0.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.google.firebase:firebase-auth-ktx:20.0.1'
+    implementation 'com.google.firebase:firebase-firestore:22.0.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:22.0.1'
     // 카카오 로그인
     implementation "com.kakao.sdk:v2-user:2.2.0"
     // Java-Kotlin 연동
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.4.10'
+    // multi-dex library
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // login API
+    implementation "com.squareup.retrofit2:converter-gson:2.7.1"
+    implementation "com.squareup.retrofit2:retrofit:2.7.1"
+    implementation "com.squareup.okhttp3:okhttp:4.3.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.3.1"
+    implementation "org.koin:koin-androidx-scope:2.0.1"
+    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
