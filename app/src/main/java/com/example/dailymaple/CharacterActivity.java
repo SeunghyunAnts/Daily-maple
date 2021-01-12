@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 
 public class CharacterActivity extends AppCompatActivity {
 
-    Intent intent;
+    Intent intent, intentFromLogin;
     ImageView[] imageViews_plus;
     FrameLayout[] frameLayouts;
     int[] imageViews_plus_id = {R.id.imageView_plus1, R.id.imageView_plus2, R.id.imageView_plus3,
@@ -60,6 +61,9 @@ public class CharacterActivity extends AppCompatActivity {
             System.out.println("i : "+imageViews_plus_id[i]);
         }
 
+        intentFromLogin = getIntent();
+        Log.d("platform", intentFromLogin.getStringExtra("platform"));
+        Log.d("id", intentFromLogin.getStringExtra("id"));
     }
 
     public void onClickPlus(View v){
