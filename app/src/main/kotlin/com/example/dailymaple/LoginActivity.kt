@@ -30,10 +30,10 @@ class LoginActivity : AppCompatActivity() {
             if (error != null) {
                 Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
             }
-//            else if (tokenInfo != null) {
-//                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
-//                successKakaoAuth()
-//            }
+            else if (tokenInfo != null) {
+                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                successKakaoAuth()
+            }
         }
 
         // onClick 이벤트 처리
