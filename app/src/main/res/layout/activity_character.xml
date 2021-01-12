@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CharacterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp">
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:paddingTop="25dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="25dp">
+
+                <FrameLayout
+                    android:id="@+id/framelayout1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/framelayout2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/framelayout3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:paddingTop="25dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="25dp"
+                android:visibility="gone">
+
+                <FrameLayout
+                    android:id="@+id/framelayout4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/framelayout5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr5"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name5"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/framelayout6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr6"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name6"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:paddingTop="25dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="25dp"
+                android:visibility="gone">
+
+                <FrameLayout
+                    android:id="@+id/framelayout7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr7"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name7"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/framelayout8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr8"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name8"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/framelayout9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr9"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name9"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus9"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:paddingTop="25dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="25dp"
+                android:visibility="gone">
+
+                <FrameLayout
+                    android:id="@+id/framelayout10"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr10"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name10"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus10"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/framelayout11"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr11"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name11"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus11"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/framelayout12"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView_chr12"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/textView_name12"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#202020" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView_plus12"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/character_plus_background"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/plus" />
+
+                </FrameLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>
