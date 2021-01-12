@@ -41,7 +41,7 @@ public class CharacterActivity extends AppCompatActivity {
                                     findViewById(imageViews_plus_id[6]), findViewById(imageViews_plus_id[7]), findViewById(imageViews_plus_id[8]),
                                     findViewById(imageViews_plus_id[9]), findViewById(imageViews_plus_id[10]), findViewById(imageViews_plus_id[11])};
 
-        frameLayouts = new FrameLayout[]{findViewById(framelayouts_id[1]), findViewById(framelayouts_id[1]), findViewById(framelayouts_id[2]),
+        frameLayouts = new FrameLayout[]{findViewById(framelayouts_id[0]), findViewById(framelayouts_id[1]), findViewById(framelayouts_id[2]),
                 findViewById(framelayouts_id[3]), findViewById(framelayouts_id[4]), findViewById(framelayouts_id[5]),
                 findViewById(framelayouts_id[6]), findViewById(framelayouts_id[7]), findViewById(framelayouts_id[8]),
                 findViewById(framelayouts_id[9]), findViewById(framelayouts_id[10]), findViewById(framelayouts_id[11])};
@@ -56,6 +56,9 @@ public class CharacterActivity extends AppCompatActivity {
         tableRow4 = findViewById(R.id.tableRow4);
 
         tableRows = new TableRow[]{tableRow1,tableRow2, tableRow3, tableRow4};
+        for(int i=0;i<imageViews_plus_id.length;i++){
+            System.out.println("i : "+imageViews_plus_id[i]);
+        }
 
     }
 
@@ -73,16 +76,20 @@ public class CharacterActivity extends AppCompatActivity {
             if(resultCode==RESULT_OK){
                 String name = data.getStringExtra("name");
                 int btn_id = data.getIntExtra("btn_id",0);
+                System.out.println("btn_id : "+btn_id);
+
                 for(int i=0;i<imageViews_plus_id.length;i++){
                     if(imageViews_plus_id[i]==btn_id){
+                        System.out.println("i2 : "+i);
                         imageViews_plus[i].setVisibility(View.INVISIBLE);
                         if((i+1)%3==0 && i!=imageViews_plus_id.length-1){
-                            tableRows[(i+1)/3+1].setVisibility(View.VISIBLE);
+                            tableRows[(i+1)/3].setVisibility(View.VISIBLE);
                             break;
                         }
                         if(i!=imageViews_plus_id.length-1){
                             frameLayouts[i+1].setVisibility(View.VISIBLE);
                         }
+
 
                         break;
                     }
