@@ -98,7 +98,7 @@ class LoginActivity : AppCompatActivity() {
                         "\n회원번호: ${user.id}")
 
                 // 정보 요청 성공 시 메인 액티비티로 전환
-                val intent = Intent(this, CharacterActivity::class.java)
+                val intent = Intent(this, ConfigActivity::class.java)
                 intent.putExtra("platform", "Kakao")
                 intent.putExtra("id", id)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
