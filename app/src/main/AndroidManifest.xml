@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyMaple">
-        <activity android:name=".ViewProgressActivity"></activity>
+        <activity android:name=".ViewDailyContentsActivity"></activity>
+        <activity android:name=".ViewProgressActivity" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".AddPopupActivity"

@@ -1,5 +1,6 @@
 package com.example.dailymaple;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,11 +13,21 @@ import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class CharacterActivity extends AppCompatActivity {
 
     Intent intent, intentFromLogin;
     ImageView[] imageViews_plus;
     FrameLayout[] frameLayouts;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     View character; // TODO: should be changed array
     int[] imageViews_plus_id = {R.id.imageView_plus1, R.id.imageView_plus2, R.id.imageView_plus3,
                                 R.id.imageView_plus4, R.id.imageView_plus5, R.id.imageView_plus6,
@@ -90,6 +101,23 @@ public class CharacterActivity extends AppCompatActivity {
                 String name = data.getStringExtra("name");
                 int btn_id = data.getIntExtra("btn_id",0);
                 System.out.println("btn_id : "+btn_id);
+
+                Map<String, Object> user = new HashMap<>();
+                user.put("nickname", name);
+                db.collection("users")
+                        .add(user)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d("Success", "DocumentSnapshot added with ID: "+documentReference.getId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("Fail", "Error adding document", e);
+                            }
+                        });
 
                 for(int i=0;i<imageViews_plus_id.length;i++){
                     if(imageViews_plus_id[i]==btn_id){
