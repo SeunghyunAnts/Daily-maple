@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +36,7 @@ public class CharacterActivity extends AppCompatActivity {
     FrameLayout[] frameLayouts;
     TextView[] textViews_name;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ProgressDialog progressDialog;
 
     View character; // TODO: should be changed array
     int[] imageViews_plus_id = {R.id.imageView_plus1, R.id.imageView_plus2, R.id.imageView_plus3,
@@ -69,8 +72,10 @@ public class CharacterActivity extends AppCompatActivity {
         Log.d("id", intentFromLogin.getStringExtra("id"));
         platform = intentFromLogin.getStringExtra("platform");
         userId = intentFromLogin.getStringExtra("id");
-
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        progressDialog.show();
+        progressDialog.setCancelable(false);
 
         db.collection(platform + "_users")
                 .document(userId)
@@ -132,6 +137,7 @@ public class CharacterActivity extends AppCompatActivity {
                             if(characterInfos.size()!=imageViews_plus_id.length){
                                 frameLayouts[characterInfos.size()].setVisibility(View.VISIBLE);
                             }
+                            progressDialog.dismiss();
                         } else {
                             Log.w("", "Error getting documents.", task.getException());
                         }
@@ -164,6 +170,7 @@ public class CharacterActivity extends AppCompatActivity {
 
                 Map<String, Object> user = new HashMap<>();
                 user.put("nickname", name);
+                progressDialog.show();
                 db.collection(platform + "_users")
                         .document(userId)
                         .collection("characters")
@@ -190,6 +197,7 @@ public class CharacterActivity extends AppCompatActivity {
                                         break;
                                     }
                                 }
+                                progressDialog.dismiss();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
