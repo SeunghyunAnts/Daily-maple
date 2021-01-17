@@ -1,8 +1,11 @@
 package com.example.dailymaple;
 
 public class Constants {
-    // Notification Channel Preference Key
-    public static final String SHARED_PREF_NOTIFICATION_KEY = "Notification Value";
+    // Preference Key
+    public static final String SHARED_PREF_URSUS_KEY = "Notification Value";
+    public static final String SHARED_PREF_MAIN_CHARACTER_KEY = "Main Character";
+    public static final String SHARED_PREF_DAILY_BOSS_KEY = "Daily Boss";
+    public static final String SHARED_PREF_WEEKLY_BOSS_KEY = "Weekly Boss";
 
     // Notification Channel ID
     public static final String NOTIFICATION_CHANNEL_ID = "10001";

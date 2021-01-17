@@ -80,7 +80,7 @@ public class NotificationHelper {
     // 푸시 알림 허용 및 사용자에 의해 알림이 꺼진 상태가 아니라면 푸시 알림 백그라운드 갱신
     public static void refreshScheduledNotification(Context context) {
         try {
-            Boolean isNotificationActivated = PreferenceHelper.getBoolean(context, Constants.SHARED_PREF_NOTIFICATION_KEY);
+            Boolean isNotificationActivated = PreferenceHelper.getBoolean(context, Constants.SHARED_PREF_URSUS_KEY);
             if (isNotificationActivated) {
                 NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 boolean isNotifyAllowed;
