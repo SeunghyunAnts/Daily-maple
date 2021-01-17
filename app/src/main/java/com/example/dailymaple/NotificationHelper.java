@@ -198,20 +198,10 @@ public class NotificationHelper {
                 // Configure the notification channel
                 notificationChannel.setDescription("푸시알림");
                 notificationChannel.enableLights(true); // 화면활성화 설정
-                notificationChannel.setVibrationPattern(new long[]{0, 1000, 500}); // 진동패턴 설정
+                notificationChannel.setVibrationPattern(new long[]{0}); // 진동패턴 설정
                 notificationChannel.enableVibration(true); // 진동 설정
+                notificationChannel.setSound(null, null);
                 notificationManager.createNotificationChannel(notificationChannel); // channel 생성
-
-                // 여기서부터 테스트 -> 잘됨
-                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
-                notificationBuilder.setSmallIcon(R.drawable.maplestory_mushroom_icon) // Set Image
-                        .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
-                        .setAutoCancel(true); // Remove Notification
-
-                notificationBuilder.setContentTitle("notification initial complete");
-
-                Notification notifi = notificationBuilder.build();
-                notificationManager.notify(1, notifi);
             }
         } catch (NullPointerException nullException) {
             // notificationManager null 오류 raise
