@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyMaple">
-        <activity android:name=".ViewDailyContentsActivity"></activity>
+        <activity
+            android:name=".ViewDailyContentsActivity"
+            android:label="일간"
+            android:parentActivityName=".ViewProgressActivity" />
         <activity android:name=".ViewProgressActivity" />
         <activity android:name=".LoginActivity" />
         <activity
