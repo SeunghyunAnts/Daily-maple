@@ -22,7 +22,9 @@
             android:label="일간"
             android:parentActivityName=".ViewProgressActivity" />
         <activity android:name=".ConfigActivity"></activity>
-        <activity android:name=".ViewProgressActivity" />
+        <activity
+            android:name=".ViewProgressActivity"
+            android:label="컨텐츠" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".AddPopupActivity"

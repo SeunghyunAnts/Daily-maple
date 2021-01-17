@@ -60,6 +60,11 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
         dailyContents[10] = findViewById(R.id.pinkbean);
 
         receiveData();
+        try { // TODO: change to Async
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         for (int i = 0; i < 11; i++) {
             ImageView _this = dailyContents[i];
