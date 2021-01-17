@@ -28,18 +28,18 @@ public class ConfigActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Log.d("notifi", "button boolean : true");
+                    Log.d("notifi!", "button boolean : true");
                     boolean isChannelCreated = NotificationHelper.isNotificationChannelCreated(getApplicationContext());
                     if (isChannelCreated) {
-                        Log.d("notifi", "channel exist");
+                        Log.d("notifi!", "channel exist");
                         PreferenceHelper.setBoolean(getApplicationContext(), Constants.SHARED_PREF_NOTIFICATION_KEY, true);
                         NotificationHelper.setScheduledNotification(workManager);
                     } else {
-                        Log.d("notifi", "channel not exist");
+                        Log.d("notifi!", "channel not exist");
                         NotificationHelper.createNotificationChannel(getApplicationContext());
                     }
                 } else {
-                    Log.d("notifi", "button boolean : false");
+                    Log.d("!", "button boolean : false");
                     PreferenceHelper.setBoolean(getApplicationContext(), Constants.SHARED_PREF_NOTIFICATION_KEY, false);
                     workManager.cancelAllWork();
                 }
