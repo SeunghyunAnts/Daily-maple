@@ -4,6 +4,10 @@
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- 알람 사용 설정 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
@@ -12,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyMaple">
+        <activity android:name=".ConfigActivity"></activity>
         <activity android:name=".ViewDailyContentsActivity"></activity>
         <activity android:name=".ViewProgressActivity" />
         <activity android:name=".LoginActivity" />
