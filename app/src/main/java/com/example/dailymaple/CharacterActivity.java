@@ -53,6 +53,9 @@ public class CharacterActivity extends AppCompatActivity {
     LinearLayout[] characters;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ProgressDialog progressDialog;
+    int level = 240; // sample
+
+
     int delete_i = 0;
 
     View character; // TODO: should be changed array
