@@ -15,6 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyMaple"
         android:usesCleartextTraffic="true">
+        <activity android:name=".DeletePopupActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
         <activity
             android:name=".ViewDailyContentsActivity"
             android:label="일간"

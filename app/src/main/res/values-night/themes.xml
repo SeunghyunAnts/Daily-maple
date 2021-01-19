@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">#F3BD6F</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimaryLight</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
 </resources>

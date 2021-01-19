@@ -32,6 +32,7 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
     Intent intent;
     Intent intent2;
     String img_url;
+    Button button_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,45 +42,22 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
 
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int width = (int) (dm.widthPixels * 0.9); // Display 사이즈의 90%
-        int height = (int) (dm.heightPixels * 0.5); // Display 사이즈의 50%
+        int height = (int) (dm.heightPixels * 0.6); // Display 사이즈의 50%
         getWindow().getAttributes().width = width;
         getWindow().getAttributes().height = height;
 
         editText_name = findViewById(R.id.editText_name);
         imageView_chr = findViewById(R.id.imageView_chr);
+        button_search = findViewById(R.id.button_search);
         button_add = findViewById(R.id.button_add);
         button_cancel = findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(this);
         button_add.setOnClickListener(this);
+        button_search.setOnClickListener(this);
 
         intent2 = getIntent();
 
-        editText_name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                new Thread() {
-                    public void run() {
-                        try {
-                            img_url = crawling("https://maplestory.nexon.com/Ranking/World/Total?c="+s.toString(),s.toString());
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }.start();
-                Glide.with(getApplicationContext()).load(img_url).into(imageView_chr);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
     @Override
@@ -92,10 +70,28 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
                 intent = new Intent();
                 intent.putExtra("name",editText_name.getText().toString());
                 intent.putExtra("btn_id",intent2.getIntExtra("btn_id",0));
+                intent.putExtra("img_url",img_url);
                 // 이미지도 함께 보내야?
                 setResult(RESULT_OK, intent);
                 finish();
+            case R.id.button_search:
+                Thread thread = new Thread() {
+                    public void run() {
+                        try {
+                            img_url = crawling("https://maplestory.nexon.com/Ranking/World/Total?c="+editText_name.getText().toString(),editText_name.getText().toString());
 
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                thread.start();
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Glide.with(getApplicationContext()).load(img_url).fitCenter().into(imageView_chr);
         }
     }
 

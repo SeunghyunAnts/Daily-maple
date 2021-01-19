@@ -13,72 +13,81 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="0.9"
-        android:background="#FFF1DE"
+        android:layout_weight="1.5"
+        android:background="#FFFFFF"
         android:gravity="center"
         android:text="캐릭터 생성"
         android:textColor="#505050"
-        android:textSize="24sp"
+        android:textSize="17sp"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageView_chr"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="4"
         tools:src="@tools:sample/avatars" />
-
-    <EditText
-        android:id="@+id/editText_name"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="닉네임을 입력해 주세요"
-        android:inputType="textPersonName" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="1.2"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="닉네임을 입력해 주세요"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/button_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="7dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/character_add_popup_btn"
+            android:text="조 회"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1.1"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_add"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/character_add_popup_btn"
-            android:text="생성"
+            android:layout_height="match_parent"
+            android:layout_marginRight="0.3dp"
+            android:layout_weight="0.9"
+            android:background="#FF9800"
+            android:text="생 성"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="16sp"
             app:backgroundTint="#FF9800" />
 
         <Button
             android:id="@+id/button_cancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/character_add_popup_btn"
-            android:text="취소"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0.3dp"
+            android:layout_weight="0.9"
+            android:background="#FF9800"
+            android:text="취 소"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="16sp"
             app:backgroundTint="#FF9800" />
     </LinearLayout>
 </LinearLayout>

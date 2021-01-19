@@ -55,18 +55,34 @@
                                 android:id="@+id/imageView_chr1"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
-                            <TextView
-                                android:id="@+id/textView_name1"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_weight="0.5"
-                                android:gravity="center"
-                                android:text="TextView"
-                                android:textColor="#202020" />
+                                android:background="@drawable/character_name_background"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="3dp"
+                                    android:text="Lv. 240"
+                                    android:textSize="9sp" />
+
+                                <TextView
+                                    android:id="@+id/textView_name1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center"
+                                    android:text="TextView"
+                                    android:textColor="#202020" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -95,6 +111,14 @@
                         android:visibility="invisible">
 
                         <LinearLayout
+                            android:id="@+id/character2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -104,7 +128,7 @@
                                 android:id="@+id/imageView_chr2"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -143,6 +167,13 @@
                         android:visibility="invisible">
 
                         <LinearLayout
+                            android:id="@+id/character3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -152,7 +183,7 @@
                                 android:id="@+id/imageView_chr3"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -201,6 +232,7 @@
                         android:layout_weight="1">
 
                         <LinearLayout
+                            android:id="@+id/character4"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -210,7 +242,7 @@
                                 android:id="@+id/imageView_chr4"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -249,6 +281,13 @@
                         android:visibility="invisible">
 
                         <LinearLayout
+                            android:id="@+id/character5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -258,7 +297,7 @@
                                 android:id="@+id/imageView_chr5"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -297,18 +336,19 @@
                         android:visibility="invisible">
 
                         <LinearLayout
+                            android:id="@+id/character6"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/imageView_chr6"
+                                android:id="@+id/imageView_plus6"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
-                                tools:src="@tools:sample/avatars" />
+                                android:src="@drawable/plus" />
 
                             <TextView
                                 android:id="@+id/textView_name6"
@@ -355,6 +395,7 @@
                         android:layout_weight="1">
 
                         <LinearLayout
+                            android:id="@+id/character7"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -364,7 +405,7 @@
                                 android:id="@+id/imageView_chr7"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -412,7 +453,7 @@
                                 android:id="@+id/imageView_chr8"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -438,7 +479,6 @@
                             android:src="@drawable/plus" />
 
                     </FrameLayout>
-
                     <FrameLayout
                         android:id="@+id/framelayout9"
                         android:layout_width="0dp"
@@ -451,6 +491,7 @@
                         android:visibility="invisible">
 
                         <LinearLayout
+                            android:id="@+id/character9"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -460,7 +501,7 @@
                                 android:id="@+id/imageView_chr9"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -509,6 +550,7 @@
                         android:layout_weight="1">
 
                         <LinearLayout
+                            android:id="@+id/character10"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -518,7 +560,7 @@
                                 android:id="@+id/imageView_chr10"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -557,6 +599,7 @@
                         android:visibility="invisible">
 
                         <LinearLayout
+                            android:id="@+id/character11"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -566,7 +609,7 @@
                                 android:id="@+id/imageView_chr11"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
@@ -605,6 +648,7 @@
                         android:visibility="invisible">
 
                         <LinearLayout
+                            android:id="@+id/character12"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -614,7 +658,7 @@
                                 android:id="@+id/imageView_chr12"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.8"
                                 android:scaleType="fitCenter"
                                 tools:src="@tools:sample/avatars" />
 
