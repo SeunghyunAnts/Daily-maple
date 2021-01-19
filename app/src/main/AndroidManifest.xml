@@ -21,7 +21,7 @@
             android:name=".ViewDailyContentsActivity"
             android:label="일간"
             android:parentActivityName=".ViewProgressActivity" />
-        <activity android:name=".ConfigActivity"></activity>
+        <activity android:name=".ConfigActivity" />
         <activity
             android:name=".ViewProgressActivity"
             android:label="컨텐츠" />

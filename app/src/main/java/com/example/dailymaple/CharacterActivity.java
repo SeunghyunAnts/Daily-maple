@@ -3,6 +3,7 @@ package com.example.dailymaple;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +11,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -93,7 +97,13 @@ public class CharacterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_character);
         characterInfos = new ArrayList<CharacterInfo>();
+
+        // 툴바 설정
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         intentFromLogin = getIntent();
         Log.d("platform", intentFromLogin.getStringExtra("platform"));
@@ -104,7 +114,7 @@ public class CharacterActivity extends AppCompatActivity {
         progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         progressDialog.show();
         progressDialog.setCancelable(false);
-
+//
         db.collection(platform + "_users")
                 .document(userId)
                 .collection("characters")
@@ -187,16 +197,19 @@ public class CharacterActivity extends AppCompatActivity {
                                 frameLayouts[characterInfos.size()].setVisibility(View.VISIBLE);
                             }
                             progressDialog.dismiss();
+                          
+                            // 툴바 설정 : dismiss() 실행 후 기본 툴바 없어지는 오류 있음
+                            Toolbar toolbar = findViewById(R.id.toolbar);
+                            setSupportActionBar(toolbar);
+                            getSupportActionBar().setDisplayShowTitleEnabled(false);
                             for(int j=0;j<characterInfos.size();j++){
                                 System.out.println("Current characterID : "+characterInfos.get(j).getCharacterId());
                             }
-
                         } else {
                             Log.w("", "Error getting documents.", task.getException());
                         }
                     }
                 });
-
 
 
     }
@@ -339,5 +352,33 @@ public class CharacterActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        Log.d("memo", "asdfdsa");
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu_toolbar, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.action_setting:
+                // User chose the "Settings" item, show the app settings UI...
+                Toast.makeText(getApplicationContext(), "환경설정 버튼 클릭됨", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(this, ConfigActivity.class);
+                startActivity(intent);
+
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                Toast.makeText(getApplicationContext(), "나머지 버튼 클릭됨", Toast.LENGTH_LONG).show();
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 
 }

@@ -1,13 +1,17 @@
 package com.example.dailymaple;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.work.WorkManager;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +26,13 @@ public class ConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
+
+        // 툴바 설정
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // 현재 캐릭터 이름 TextView
         configCharacterTextView = (TextView) findViewById(R.id.current_character_name);
@@ -41,7 +52,7 @@ public class ConfigActivity extends AppCompatActivity {
 
         // 주간 보스 알림 선언
         switchActivateWeeklyBossNotify = (CompoundButton) findViewById(R.id.weekly_boss_notify_btn);
-        switchActivateDailyBossNotify.setChecked(PreferenceHelper.getBoolean(getApplicationContext(), Constants.SHARED_PREF_WEEKLY_BOSS_KEY));
+        switchActivateWeeklyBossNotify.setChecked(PreferenceHelper.getBoolean(getApplicationContext(), Constants.SHARED_PREF_WEEKLY_BOSS_KEY));
 
         initSwitchLayout(WorkManager.getInstance(getApplicationContext()));
     }
@@ -76,6 +87,9 @@ public class ConfigActivity extends AppCompatActivity {
                 // 대표 캐릭터 변경 후 환경설정 창 UI 변경
                 switchActivateUrsusNotify.setEnabled(true);
                 ursusNotifyNameTextView.setTextColor(Color.parseColor("#000000"));
+
+                // 이후 대표캐릭터 닉네임 변경
+                mainCharacterTextView.setText(PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY));
             }
         });
 
@@ -119,6 +133,29 @@ public class ConfigActivity extends AppCompatActivity {
                     boolean isChannelCreated = NotificationHelper.isNotificationChannelCreated(getApplicationContext());
                     if (isChannelCreated) {
                         Log.d("notifi!", "channel exist");
+                        PreferenceHelper.setBoolean(getApplicationContext(), Constants.SHARED_PREF_DAILY_BOSS_KEY, true);
+                        NotificationHelper.setScheduledNotification(workManager);
+                    } else {
+                        Log.d("notifi!", "channel not exist");
+                        NotificationHelper.createNotificationChannel(getApplicationContext());
+                    }
+                } else {
+                    Log.d("!", "weekly boss button boolean : false");
+                    PreferenceHelper.setBoolean(getApplicationContext(), Constants.SHARED_PREF_DAILY_BOSS_KEY, false);
+                    workManager.cancelAllWork();
+                }
+            }
+        });
+
+        // 주간 보스 알림 설정
+        switchActivateWeeklyBossNotify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Log.d("notifi!", "weekly boss button boolean : true");
+                    boolean isChannelCreated = NotificationHelper.isNotificationChannelCreated(getApplicationContext());
+                    if (isChannelCreated) {
+                        Log.d("notifi!", "channel exist");
                         PreferenceHelper.setBoolean(getApplicationContext(), Constants.SHARED_PREF_WEEKLY_BOSS_KEY, true);
                         NotificationHelper.setScheduledNotification(workManager);
                     } else {
@@ -132,9 +169,23 @@ public class ConfigActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // 주간 보스 알림 설정
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.main_menu_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
