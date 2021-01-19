@@ -32,8 +32,8 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
 
 
     String platform = "Kakao"; // TODO: should be replaced
-    String userId = "1593345655";
-    String characterId = "YgK5QEI2qeqoTg8Sm6lG";
+    String userId = "1592358912";
+    String characterId = "2lbGqA6Qhydt7fIZppVU";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference path =
             db.collection(platform+"_users")

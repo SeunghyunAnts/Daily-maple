@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,632 +7,642 @@
     android:orientation="vertical"
     tools:context=".CharacterActivity">
 
-    <LinearLayout
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TableRow
-                android:id="@+id/tableRow1"
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:paddingTop="25dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="25dp">
+                android:layout_marginTop="30dp">
 
-                <FrameLayout
-                    android:id="@+id/framelayout1"
-                    android:layout_width="0dp"
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1">
+                    android:paddingLeft="20dp"
+                    android:paddingTop="25dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="25dp">
 
-                    <LinearLayout
-                        android:id="@+id/character"
-                        android:layout_width="match_parent"
+                    <FrameLayout
+                        android:id="@+id/framelayout1"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/character"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView_chr1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
+
+                            <TextView
+                                android:id="@+id/textView_name1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
+
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr1"
+                            android:id="@+id/imageView_plus1"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus"
+                            android:visibility="visible" />
 
-                        <TextView
-                            android:id="@+id/textView_name1"
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/framelayout2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/imageView_chr2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/imageView_plus1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus"
-                        android:visibility="visible" />
+                            <TextView
+                                android:id="@+id/textView_name2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/framelayout2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr2"
+                            android:id="@+id/imageView_plus2"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name2"
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/framelayout3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/imageView_chr3"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/imageView_plus2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
+                            <TextView
+                                android:id="@+id/textView_name3"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/framelayout3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr3"
+                            android:id="@+id/imageView_plus3"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name3"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                    </FrameLayout>
+                </TableRow>
 
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/imageView_plus3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
-
-                </FrameLayout>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:paddingTop="25dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="25dp"
-                android:visibility="gone">
-
-                <FrameLayout
-                    android:id="@+id/framelayout4"
-                    android:layout_width="0dp"
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1">
+                    android:paddingLeft="20dp"
+                    android:paddingTop="25dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="25dp"
+                    android:visibility="gone">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <FrameLayout
+                        android:id="@+id/framelayout4"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView_chr4"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
+
+                            <TextView
+                                android:id="@+id/textView_name4"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
+
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr4"
+                            android:id="@+id/imageView_plus4"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name4"
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/framelayout5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/imageView_chr5"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/imageView_plus4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
+                            <TextView
+                                android:id="@+id/textView_name5"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/framelayout5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr5"
+                            android:id="@+id/imageView_plus5"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name5"
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/framelayout6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/imageView_chr6"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/imageView_plus5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
+                            <TextView
+                                android:id="@+id/textView_name6"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/framelayout6"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr6"
+                            android:id="@+id/imageView_plus6"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name6"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                    </FrameLayout>
+                </TableRow>
 
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/imageView_plus6"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
-
-                </FrameLayout>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:paddingTop="25dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="25dp"
-                android:visibility="gone">
-
-                <FrameLayout
-                    android:id="@+id/framelayout7"
-                    android:layout_width="0dp"
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1">
+                    android:paddingLeft="20dp"
+                    android:paddingTop="25dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="25dp"
+                    android:visibility="gone">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <FrameLayout
+                        android:id="@+id/framelayout7"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView_chr7"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
+
+                            <TextView
+                                android:id="@+id/textView_name7"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
+
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr7"
+                            android:id="@+id/imageView_plus7"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name7"
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/framelayout8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/imageView_chr8"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/imageView_plus7"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
+                            <TextView
+                                android:id="@+id/textView_name8"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/framelayout8"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr8"
+                            android:id="@+id/imageView_plus8"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name8"
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/framelayout9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/imageView_chr9"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/imageView_plus8"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
+                            <TextView
+                                android:id="@+id/textView_name9"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/framelayout9"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr9"
+                            android:id="@+id/imageView_plus9"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name9"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                    </FrameLayout>
+                </TableRow>
 
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/imageView_plus9"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
-
-                </FrameLayout>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:paddingTop="25dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="25dp"
-                android:visibility="gone">
-
-                <FrameLayout
-                    android:id="@+id/framelayout10"
-                    android:layout_width="0dp"
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1">
+                    android:paddingLeft="20dp"
+                    android:paddingTop="25dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="25dp"
+                    android:visibility="gone">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <FrameLayout
+                        android:id="@+id/framelayout10"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView_chr10"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
+
+                            <TextView
+                                android:id="@+id/textView_name10"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
+
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr10"
+                            android:id="@+id/imageView_plus10"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name10"
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/framelayout11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/imageView_chr11"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/imageView_plus10"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
+                            <TextView
+                                android:id="@+id/textView_name11"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/framelayout11"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr11"
+                            android:id="@+id/imageView_plus11"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name11"
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/framelayout12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_background"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/imageView_chr12"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:scaleType="fitCenter"
+                                tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/imageView_plus11"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
+                            <TextView
+                                android:id="@+id/textView_name12"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="TextView"
+                                android:textColor="#202020" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/framelayout12"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_background"
-                        android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView_chr12"
+                            android:id="@+id/imageView_plus12"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/character_plus_background"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:scaleType="fitCenter"
-                            tools:src="@tools:sample/avatars" />
+                            android:src="@drawable/plus" />
 
-                        <TextView
-                            android:id="@+id/textView_name12"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:text="TextView"
-                            android:textColor="#202020" />
+                    </FrameLayout>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/imageView_plus12"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/character_plus_background"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/plus" />
-
-                </FrameLayout>
-            </TableRow>
-        </TableLayout>
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>
