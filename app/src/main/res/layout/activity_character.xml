@@ -56,9 +56,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="0.5"
+                            android:background="@drawable/character_name_background"
                             android:gravity="center"
                             android:text="TextView"
-                            android:textColor="#202020" />
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 

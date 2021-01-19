@@ -176,7 +176,7 @@ public class CharacterActivity extends AppCompatActivity {
                                 frameLayouts[i].setVisibility(View.VISIBLE);
                                 imageViews_plus[i].setVisibility(View.INVISIBLE);
                                 textViews_name[i].setText(characterInfos.get(i).getNickname());
-                                Glide.with(getApplicationContext()).load(characterInfos.get(i).getImgUrl()).fitCenter().into(imageViews_chr[i]);
+                                Glide.with(getApplicationContext()).load(characterInfos.get(i).getImgUrl()).centerCrop().into(imageViews_chr[i]);
 
 
                             }
@@ -246,7 +246,7 @@ public class CharacterActivity extends AppCompatActivity {
                                         characterInfos.add(new CharacterInfo(documentReference.getId(), name, img_url));
                                         textViews_name[i].setText(name);
 
-                                        Glide.with(getApplicationContext()).load(img_url).fitCenter().into(imageViews_chr[i]);
+                                        Glide.with(getApplicationContext()).load(img_url).centerCrop().into(imageViews_chr[i]);
                                         imageViews_plus[i].setVisibility(View.INVISIBLE);
                                         if((i+1)%3==0 && i!=imageViews_plus_id.length-1){
                                             tableRows[(i+1)/3].setVisibility(View.VISIBLE);
@@ -297,7 +297,7 @@ public class CharacterActivity extends AppCompatActivity {
                                             frameLayouts[i].setVisibility(View.VISIBLE);
                                             imageViews_plus[i].setVisibility(View.INVISIBLE);
                                             textViews_name[i].setText(characterInfos.get(i).getNickname());
-                                            Glide.with(getApplicationContext()).load(characterInfos.get(i).getImgUrl()).fitCenter().into(imageViews_chr[i]);
+                                            Glide.with(getApplicationContext()).load(characterInfos.get(i).getImgUrl()).centerCrop().into(imageViews_chr[i]);
                                         }
                                         if(characterInfos.size()%3==2 && (characterInfos.size()!=imageViews_plus.length-1)){
                                             tableRows[(characterInfos.size())/3+1].setVisibility(View.GONE);
