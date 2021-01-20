@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -118,12 +118,6 @@
                             android:orientation="vertical">
 
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/character_background"
-                            android:orientation="vertical">
-
                             <ImageView
                                 android:id="@+id/imageView_chr2"
                                 android:layout_width="match_parent"
@@ -168,12 +162,6 @@
 
                         <LinearLayout
                             android:id="@+id/character3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/character_background"
-                            android:orientation="vertical">
-
-                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -287,12 +275,6 @@
                             android:background="@drawable/character_background"
                             android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/character_background"
-                            android:orientation="vertical">
-
                             <ImageView
                                 android:id="@+id/imageView_chr5"
                                 android:layout_width="match_parent"
@@ -343,7 +325,7 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/imageView_plus6"
+                                android:id="@+id/imageView_chr6"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_weight="1.8"
@@ -444,6 +426,7 @@
                         android:visibility="invisible">
 
                         <LinearLayout
+                            android:id="@+id/character8"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/character_background"
@@ -479,6 +462,7 @@
                             android:src="@drawable/plus" />
 
                     </FrameLayout>
+
                     <FrameLayout
                         android:id="@+id/framelayout9"
                         android:layout_width="0dp"
