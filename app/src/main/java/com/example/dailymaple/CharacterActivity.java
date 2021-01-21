@@ -368,6 +368,7 @@ public class CharacterActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "환경설정 버튼 클릭됨", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(this, ConfigActivity.class);
+                intent.putExtra("Characters", characterInfos);
                 startActivity(intent);
 
                 return true;
