@@ -76,8 +76,14 @@ public class ConfigActivity extends AppCompatActivity {
         String mainCharacterName = PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY);
         Boolean btnEnable = false;
 
+        // 메인 캐릭터가 선택되어야 우르스 알림 설정 가능
         if(!mainCharacterName.equals("")) {
             mainCharacterTextView.setText(mainCharacterName);
+            switchActivateUrsusNotify.setEnabled(false);
+            ursusNotifyNameTextView.setTextColor(Color.parseColor("#808080"));
+        } else {
+            switchActivateUrsusNotify.setEnabled(true);
+            ursusNotifyNameTextView.setTextColor(Color.parseColor("#000000"));
         }
 
         mainCharacterChangeButton.setEnabled(true);
@@ -89,28 +95,10 @@ public class ConfigActivity extends AppCompatActivity {
                         MainCharacterChoosePopupActivity.class);
                 intent.putExtra("Characters", characterInfos);
                 startActivityForResult(intent, 1);
-
-                // 새로운 창에서 대표 캐릭터 선택
-//                PreferenceHelper.setString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY, currentCharacterName);
-//
-//                // 대표 캐릭터 변경 후 환경설정 창 UI 변경
-//                switchActivateUrsusNotify.setEnabled(true);
-//                ursusNotifyNameTextView.setTextColor(Color.parseColor("#000000"));
-//
-//                // 이후 대표캐릭터 닉네임 변경
-//                mainCharacterTextView.setText(PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY));
             }
         });
 
         // 우르스 버튼 설정
-        // 대표 캐릭터만 우르스 알림을 띄우도록 설정
-        if(!mainCharacterName.equals(currentCharacterName)) {
-            switchActivateUrsusNotify.setEnabled(false);
-            ursusNotifyNameTextView.setTextColor(Color.parseColor("#808080"));
-        } else {
-            switchActivateUrsusNotify.setEnabled(true);
-            ursusNotifyNameTextView.setTextColor(Color.parseColor("#000000"));
-        }
         switchActivateUrsusNotify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -188,6 +176,18 @@ public class ConfigActivity extends AppCompatActivity {
                 //데이터 받기
                 int result = data.getIntExtra("main_character", 0);
                 Log.d("onActivityResult", "ok :" + Integer.toString(result));
+
+                currentCharacterName = characterInfos.get(result).getNickname();
+
+                // 새로운 창에서 대표 캐릭터 선택
+                PreferenceHelper.setString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY, currentCharacterName);
+
+                // 대표 캐릭터 변경 후 환경설정 창 UI 변경
+                switchActivateUrsusNotify.setEnabled(true);
+                ursusNotifyNameTextView.setTextColor(Color.parseColor("#000000"));
+
+                // 이후 대표캐릭터 닉네임 변경
+                mainCharacterTextView.setText(PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY));
             }
         }
     }
