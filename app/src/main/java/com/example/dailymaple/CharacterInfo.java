@@ -1,6 +1,8 @@
 package com.example.dailymaple;
 
-public class CharacterInfo {
+import java.io.Serializable;
+
+public class CharacterInfo implements Serializable {
     private String character_id;
     private String nickname;
     private String img_url;

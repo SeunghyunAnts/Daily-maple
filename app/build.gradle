@@ -42,6 +42,9 @@ android {
 
 dependencies {
 
+    // viewpager 2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha04'
+
     // notification
     implementation "androidx.work:work-runtime:2.4.0"
 
