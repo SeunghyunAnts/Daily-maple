@@ -133,14 +133,9 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
             return "";
         }
 
-        Log.d("test", elem.text());
-
-        int cnt = 0;
         int save_dt = 0;
         int i = 0;
         for(Element e: elem.select("td")){
-            cnt++;
-            Log.d("adsf", e.text());
             if(e.text().length() < 3) continue;
 
             if(e.text().substring(0,3).equals("Lv.")) {
@@ -151,9 +146,6 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
                 Job = e.text().substring(e.text().indexOf("/") + 1);
             }
         }
-
-        Log.d("test : ", level);
-        Log.d("test :", Job);
 
         return elem.select("img[class=\"\"]").attr("src");
     }
