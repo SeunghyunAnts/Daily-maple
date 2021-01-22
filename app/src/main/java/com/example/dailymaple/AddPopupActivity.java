@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -33,6 +35,10 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
     Intent intent2;
     String img_url;
     Button button_search;
+
+    // 크롤링 결과
+    String level;
+    String Job;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +73,33 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
                 finish();
             case R.id.button_add:
                 // 중복확인하는 코드 작성해야 함
+
+                if(img_url == null) {
+                    // 이미지 검색을 안한 경우
+                    Toast.makeText(this, "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                if(img_url.equals("")) {
+                    // 없는 닉네임일 경우
+                    Toast.makeText(this, "존재하지 않는 캐릭터입니다.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
                 intent = new Intent();
                 intent.putExtra("name",editText_name.getText().toString());
                 intent.putExtra("btn_id",intent2.getIntExtra("btn_id",0));
                 intent.putExtra("img_url",img_url);
+                intent.putExtra("level",level);
+                intent.putExtra("job",Job);
                 // 이미지도 함께 보내야?
                 setResult(RESULT_OK, intent);
                 finish();
             case R.id.button_search:
+                if(editText_name.getText().toString().equals("") || editText_name.getText().toString() == null) {
+                    Toast.makeText(this, "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
                 Thread thread = new Thread() {
                     public void run() {
                         try {
@@ -99,26 +124,37 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
         Document doc = Jsoup.connect(url).get();
         ArrayList<Element> elems = new ArrayList<>();
 
-        Elements elem = doc.select("table[class=\"rank_table\"]");
-        Elements elem2 = doc.select("span[class=\"char_img\"]");
+        Elements elem = doc.select("tr[class=\"search_com_chk\"]");
+
+        // 없는 닉네임일 경우 예외처리
+        // 예외처리시 코드 필요? : 지금 없는 닉네임도 추가하면 만들어짐
+        if(elem.text().isEmpty()) {
+            Log.d("text", "empty!");
+            return "";
+        }
+
+        Log.d("test", elem.text());
 
         int cnt = 0;
         int save_dt = 0;
         int i = 0;
-        for(Element e: elem.select("dt")){
-//            System.out.println("e : " + e.text());
-            if(e.text().equals(name)){
-                save_dt = cnt;
-            }
+        for(Element e: elem.select("td")){
             cnt++;
-        }
-        for(Element e: elem.select(".char_img")){
-            if(i == save_dt){
-                return e.select("img[class=\"\"]").attr("src");
+            Log.d("adsf", e.text());
+            if(e.text().length() < 3) continue;
+
+            if(e.text().substring(0,3).equals("Lv.")) {
+                // 레벨 정보인 경우 cnt == 2인 경우?
+                level = e.text();
+            } else if(e.text().contains("/")) {
+                // 직업 정보인 경우 cnt == 3인 경우?
+                Job = e.text().substring(e.text().indexOf("/") + 1);
             }
-            i++;
-//            System.out.println("src : "+e.select("img[class=\"\"]").attr("src"));
         }
-        return "";
+
+        Log.d("test : ", level);
+        Log.d("test :", Job);
+
+        return elem.select("img[class=\"\"]").attr("src");
     }
 }
