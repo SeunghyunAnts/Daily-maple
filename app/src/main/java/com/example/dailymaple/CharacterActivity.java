@@ -55,6 +55,7 @@ public class CharacterActivity extends AppCompatActivity {
     TextView[] textViews_name;
     ImageView[] imageViews_chr;
     LinearLayout[] characters;
+    TextView[] textViews_lv;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ProgressDialog progressDialog;
     int level = 240; // sample
@@ -83,6 +84,11 @@ public class CharacterActivity extends AppCompatActivity {
                             R.id.character4, R.id.character5, R.id.character6,
                             R.id.character7, R.id.character8, R.id.character9,
                             R.id.character10, R.id.character11, R.id.character12};
+    int[] textViews_lv_id = {R.id.textView_lv1, R.id.textView_lv2, R.id.textView_lv3,
+            R.id.textView_lv4, R.id.textView_lv5, R.id.textView_lv6,
+            R.id.textView_lv7, R.id.textView_lv8, R.id.textView_lv9,
+            R.id.textView_lv10, R.id.textView_lv11, R.id.textView_lv12};
+
     TableRow tableRow1;
     TableRow tableRow2;
     TableRow tableRow3;
@@ -149,6 +155,11 @@ public class CharacterActivity extends AppCompatActivity {
                                     findViewById(characters_id[6]), findViewById(characters_id[7]), findViewById(characters_id[8]),
                                     findViewById(characters_id[9]), findViewById(characters_id[10]), findViewById(characters_id[11])};
 
+                            textViews_lv = new TextView[]{findViewById(textViews_lv_id[0]),findViewById(textViews_lv_id[1]),findViewById(textViews_lv_id[2]),
+                                    findViewById(textViews_lv_id[3]),findViewById(textViews_lv_id[4]),findViewById(textViews_lv_id[5]),
+                                    findViewById(textViews_lv_id[6]),findViewById(textViews_lv_id[7]),findViewById(textViews_lv_id[8]),
+                                    findViewById(textViews_lv_id[9]),findViewById(textViews_lv_id[10]),findViewById(textViews_lv_id[11])};
+
                             for(int i=0;i<imageViews_plus_id.length;i++){
 //            imageViews_plus[i] = findViewById(imageViews_plus_id[i]);
                                 imageViews_plus[i].setOnClickListener(CharacterActivity.this::onClickPlus);
@@ -171,11 +182,11 @@ public class CharacterActivity extends AppCompatActivity {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
 //                                Log.d("",document.getId() + " => " + document.getData());
-                                if(document.getData().get("img_url")==null){
+                                if(document.getData().get("img_url")==null || document.getData().get("level")==null){
                                     characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString());
                                 }
                                 else{
-                                    characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString(), document.getData().get("img_url").toString());
+                                    characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString(), document.getData().get("img_url").toString(), document.getData().get("level").toString());
                                 }
 
                                 characterInfos.add(characterInfo);
@@ -189,6 +200,7 @@ public class CharacterActivity extends AppCompatActivity {
                                 frameLayouts[i].setVisibility(View.VISIBLE);
                                 imageViews_plus[i].setVisibility(View.INVISIBLE);
                                 textViews_name[i].setText(characterInfos.get(i).getNickname());
+                                textViews_lv[i].setText(characterInfos.get(i).getLevel());
                                 Glide.with(getApplicationContext()).load(characterInfos.get(i).getImgUrl()).centerCrop().into(imageViews_chr[i]);
 
 
@@ -242,11 +254,13 @@ public class CharacterActivity extends AppCompatActivity {
                 String name = data.getStringExtra("name");
                 int btn_id = data.getIntExtra("btn_id",0);
                 String img_url = data.getStringExtra("img_url");
+                String level = data.getStringExtra("level");
                 System.out.println("btn_id : "+btn_id);
 
                 Map<String, Object> user = new HashMap<>();
                 user.put("nickname", name);
                 user.put("img_url", img_url);
+                user.put("level",level);
                 progressDialog.show();
                 db.collection(platform + "_users")
                         .document(userId)
@@ -259,8 +273,9 @@ public class CharacterActivity extends AppCompatActivity {
                                 for(int i=0;i<imageViews_plus_id.length;i++){
                                     if(imageViews_plus_id[i]==btn_id){
 //                                        System.out.println("i2 : "+i);
-                                        characterInfos.add(new CharacterInfo(documentReference.getId(), name, img_url));
+                                        characterInfos.add(new CharacterInfo(documentReference.getId(), name, img_url, level));
                                         textViews_name[i].setText(name);
+                                        textViews_lv[i].setText(level);
 
                                         Glide.with(getApplicationContext()).load(img_url).centerCrop().into(imageViews_chr[i]);
                                         imageViews_plus[i].setVisibility(View.INVISIBLE);
@@ -313,6 +328,7 @@ public class CharacterActivity extends AppCompatActivity {
                                             frameLayouts[i].setVisibility(View.VISIBLE);
                                             imageViews_plus[i].setVisibility(View.INVISIBLE);
                                             textViews_name[i].setText(characterInfos.get(i).getNickname());
+                                            textViews_lv[i].setText(characterInfos.get(i).getLevel());
                                             Glide.with(getApplicationContext()).load(characterInfos.get(i).getImgUrl()).centerCrop().into(imageViews_chr[i]);
                                         }
                                         if(characterInfos.size()%3==2 && (characterInfos.size()!=imageViews_plus.length-1)){
