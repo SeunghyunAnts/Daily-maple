@@ -8,6 +8,10 @@
     android:weightSum="3"
     tools:context=".ViewProgressActivity" >
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
     <LinearLayout
         android:id="@+id/daily"
         android:layout_width="match_parent"
