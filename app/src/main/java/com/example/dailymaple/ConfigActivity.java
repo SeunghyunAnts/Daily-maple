@@ -77,11 +77,12 @@ public class ConfigActivity extends AppCompatActivity {
         Boolean btnEnable = false;
 
         // 메인 캐릭터가 선택되어야 우르스 알림 설정 가능
-        if(!mainCharacterName.equals("")) {
-            mainCharacterTextView.setText(mainCharacterName);
+        if(mainCharacterName.equals("")) {
+            mainCharacterTextView.setText("대표 캐릭터 미설정");
             switchActivateUrsusNotify.setEnabled(false);
             ursusNotifyNameTextView.setTextColor(Color.parseColor("#808080"));
         } else {
+            mainCharacterTextView.setText(mainCharacterName);
             switchActivateUrsusNotify.setEnabled(true);
             ursusNotifyNameTextView.setTextColor(Color.parseColor("#000000"));
         }
