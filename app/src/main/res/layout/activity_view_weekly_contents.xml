@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewWeeklyContentsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/chaoszakum"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/zakum" />
+
+                    <ImageView
+                        android:id="@+id/clearzakum"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/hilla" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/bloodyqueen" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/pierre" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/banban" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/vellum" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/magnus" />
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/papulatus" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/lotus" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="192dp"
+                    android:layout_height="216dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/damien" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
