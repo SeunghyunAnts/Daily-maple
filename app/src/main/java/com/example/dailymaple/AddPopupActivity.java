@@ -71,6 +71,7 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
         switch (v.getId()){
             case R.id.button_cancel:
                 finish();
+                break;
             case R.id.button_add:
                 // 중복확인하는 코드 작성해야 함
 
@@ -94,6 +95,7 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
                 // 이미지도 함께 보내야?
                 setResult(RESULT_OK, intent);
                 finish();
+                break;
             case R.id.button_search:
                 if(editText_name.getText().toString().equals("") || editText_name.getText().toString() == null) {
                     Toast.makeText(this, "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -116,7 +118,11 @@ public class AddPopupActivity extends Activity implements View.OnClickListener {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Glide.with(getApplicationContext()).load(img_url).fitCenter().into(imageView_chr);
+                if(img_url.equals("") || img_url==null){
+                    Toast.makeText(this, "캐릭터를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else Glide.with(getApplicationContext()).load(img_url).fitCenter().into(imageView_chr);
+                break;
         }
     }
 
