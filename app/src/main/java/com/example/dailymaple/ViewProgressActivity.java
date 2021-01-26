@@ -12,10 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.common.primitives.Ints;
+
 public class ViewProgressActivity extends AppCompatActivity {
 
     Intent intent;
     View DailyContents;
+    String platform;
+    String userId;
+    String characterId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +36,20 @@ public class ViewProgressActivity extends AppCompatActivity {
 
         DailyContents = findViewById(R.id.daily);
         DailyContents.setOnClickListener(this::onClickDaily);
+
+        intent = getIntent();
+        platform = intent.getStringExtra("platform");
+        userId = intent.getStringExtra("userId");
+        characterId = intent.getStringExtra("characterId");
+        Log.i("characterId", characterId);
+
     }
 
     public void onClickDaily(View v) {
         intent = new Intent(this, ViewDailyContentsActivity.class);
+        intent.putExtra("platform", platform);
+        intent.putExtra("userId", userId);
+        intent.putExtra("characterId", characterId);
         startActivity(intent);
     }
 

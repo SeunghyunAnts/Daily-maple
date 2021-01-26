@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.primitives.Ints;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -40,6 +41,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.net.URL;
@@ -61,6 +63,7 @@ public class CharacterActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     Map<String, Object> refreshUser = new HashMap<>();
     int level = 240; // sample
+    public static final int LENGTH = 12;
 
 
     int delete_i = 0;
@@ -90,6 +93,7 @@ public class CharacterActivity extends AppCompatActivity {
             R.id.textView_lv4, R.id.textView_lv5, R.id.textView_lv6,
             R.id.textView_lv7, R.id.textView_lv8, R.id.textView_lv9,
             R.id.textView_lv10, R.id.textView_lv11, R.id.textView_lv12};
+    String[] characterId = new String[LENGTH];
 
     TableRow tableRow1;
     TableRow tableRow2;
@@ -166,7 +170,7 @@ public class CharacterActivity extends AppCompatActivity {
 //            imageViews_plus[i] = findViewById(imageViews_plus_id[i]);
                                 imageViews_plus[i].setOnClickListener(CharacterActivity.this::onClickPlus);
                                 characters[i].setOnLongClickListener(CharacterActivity.this::onLongClickCharacter);
-
+                                characters[i].setOnClickListener(CharacterActivity.this::onClickCharacter);
                             }
                             tableRow1 = findViewById(R.id.tableRow1);
                             tableRow2 = findViewById(R.id.tableRow2);
@@ -179,8 +183,8 @@ public class CharacterActivity extends AppCompatActivity {
                             }
 
 
-                            character = findViewById(R.id.character);
-                            character.setOnClickListener(CharacterActivity.this::onClickCharacter);
+//                            character = findViewById(R.id.character);
+//                            character.setOnClickListener(CharacterActivity.this::onClickCharacter);
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("", document.getId() + " => " + document.getData());
@@ -244,6 +248,7 @@ public class CharacterActivity extends AppCompatActivity {
                             getSupportActionBar().setDisplayShowTitleEnabled(false);
                             for(int j=0;j<characterInfos.size();j++){
                                 System.out.println("Current characterID : "+characterInfos.get(j).getCharacterId());
+                                characterId[j] = characterInfos.get(j).getCharacterId();
                             }
                         } else {
                             Log.w("", "Error getting documents.", task.getException());
@@ -263,6 +268,9 @@ public class CharacterActivity extends AppCompatActivity {
 
     public void onClickCharacter(View v){
         intent = new Intent(this, ViewProgressActivity.class);
+        intent.putExtra("platform", platform);
+        intent.putExtra("userId", userId);
+        intent.putExtra("characterId", characterId[Ints.indexOf(characters_id, v.getId())]);
         startActivity(intent);
     }
 

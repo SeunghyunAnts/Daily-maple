@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,21 +27,17 @@ import java.util.Map;
 
 public class ViewDailyContentsActivity extends AppCompatActivity {
 
+    Intent intent;
     ImageView[] dailyContents = new ImageView[12];
     boolean done[] = new boolean[12];
     String bossname[] = {"zacum", "hilla", "bloodyqueen", "pierre", "banban", "vellum", "horntail", "magnus", "papulatus", "arkarium", "pinkbean"};
 
 
-    String platform = "Kakao"; // TODO: should be replaced
-    String userId = "1592358912";
-    String characterId = "2lbGqA6Qhydt7fIZppVU";
+    String platform;
+    String userId;
+    String characterId;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference path =
-            db.collection(platform+"_users")
-                    .document(userId)
-                    .collection("characters")
-                    .document(characterId)
-                    .collection("dailycontents");
+    CollectionReference path;
 
 
     @Override
@@ -58,6 +55,17 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
         dailyContents[8] = findViewById(R.id.papulatus);
         dailyContents[9] = findViewById(R.id.arkarium);
         dailyContents[10] = findViewById(R.id.pinkbean);
+
+        intent = getIntent();
+        platform = intent.getStringExtra("platform");
+        userId = intent.getStringExtra("userId");
+        characterId = intent.getStringExtra("characterId");
+
+        path = db.collection(platform+"_users")
+                .document(userId)
+                .collection("characters")
+                .document(characterId)
+                .collection("dailycontents");
 
         receiveData();
         try { // TODO: change to Async
