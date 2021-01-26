@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/chaoszakum"
+                        android:id="@+id/zakum_chaos"
                         android:layout_width="192dp"
                         android:layout_height="216dp"
                         android:layout_marginLeft="4dp"
@@ -36,7 +36,7 @@
                         app:srcCompat="@drawable/zakum" />
 
                     <ImageView
-                        android:id="@+id/clearzakum"
+                        android:id="@+id/clearzakum_chaos"
                         android:layout_width="144dp"
                         android:layout_height="72dp"
                         android:layout_gravity="center"
@@ -44,34 +44,26 @@
                         app:srcCompat="@drawable/clear" />
                 </FrameLayout>
 
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/hilla" />
-            </TableRow>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/hilla_hard"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/hilla" />
 
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/bloodyqueen" />
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/pierre" />
+                    <ImageView
+                        android:id="@+id/clearhilla_hard"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
 
             </TableRow>
 
@@ -79,21 +71,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/banban" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/vellum" />
+                    <ImageView
+                        android:id="@+id/bloodyqueen_chaos"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:contentDescription="TODO"
+                        app:srcCompat="@drawable/bloodyqueen" />
+
+                    <ImageView
+                        android:id="@+id/clearbloodyqueen_chaos"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/pierre_chaos"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/pierre" />
+
+                    <ImageView
+                        android:id="@+id/clearpierre_chaos"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
 
             </TableRow>
 
@@ -101,21 +120,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/magnus" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/papulatus" />
+                    <ImageView
+                        android:id="@+id/banban_chaos"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/banban" />
+
+                    <ImageView
+                        android:id="@+id/clearbanban_chaos"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/vellum_chaos"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/vellum" />
+
+                    <ImageView
+                        android:id="@+id/clearvellum_chaos"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
 
             </TableRow>
 
@@ -123,21 +168,96 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/lotus" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="192dp"
-                    android:layout_height="216dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/damien" />
+                    <ImageView
+                        android:id="@+id/magnus_hard"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/magnus" />
+
+                    <ImageView
+                        android:id="@+id/clearmagnus_hard"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/papulatus_chaos"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/papulatus" />
+
+                    <ImageView
+                        android:id="@+id/clearpapulatus_chaos"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/arkarium"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/lotus" />
+
+                    <ImageView
+                        android:id="@+id/clearlotus"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/pinkbean"
+                        android:layout_width="192dp"
+                        android:layout_height="216dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        app:srcCompat="@drawable/damien" />
+
+                    <ImageView
+                        android:id="@+id/cleardamien"
+                        android:layout_width="144dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/clear" />
+                </FrameLayout>
+
             </TableRow>
         </TableLayout>
     </ScrollView>
