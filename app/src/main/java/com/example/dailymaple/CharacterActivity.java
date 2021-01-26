@@ -472,4 +472,9 @@ public class CharacterActivity extends AppCompatActivity {
         return user;
     }
 
+    @Override
+    public void onBackPressed() {
+//        return;
+    }
+
 }
