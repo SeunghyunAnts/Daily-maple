@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -58,6 +59,7 @@ public class CharacterActivity extends AppCompatActivity {
     TextView[] textViews_lv;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ProgressDialog progressDialog;
+    Map<String, Object> refreshUser = new HashMap<>();
     int level = 240; // sample
 
 
@@ -181,7 +183,33 @@ public class CharacterActivity extends AppCompatActivity {
                             character.setOnClickListener(CharacterActivity.this::onClickCharacter);
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.d("",document.getId() + " => " + document.getData());
+                                Log.d("", document.getId() + " => " + document.getData());
+                                Thread thread = new Thread() {
+                                    public void run() {
+                                        try {
+                                            System.out.println("before : " + document.getData().get("nickname").toString());
+                                            refreshUser = new HashMap<>();
+                                            refreshUser = refresh("https://maplestory.nexon.com/Ranking/World/Total?c="+document.getData().get("nickname").toString(), document.getData().get("nickname").toString());
+                                            System.out.println("after : " + refreshUser.get("img_url"));
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                };
+                                thread.start();
+                                try {
+                                    thread.join();
+                                    db.collection(platform + "_users")
+                                            .document(userId)
+                                            .collection("characters")
+                                            .document(document.getId())
+                                            .set(refreshUser);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
                                 if(document.getData().get("img_url")==null || document.getData().get("level")==null){
                                     characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString());
                                 }
@@ -396,6 +424,44 @@ public class CharacterActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    Map<String,Object> refresh(String url, String name) throws IOException {
+        System.out.println(url);
+        Document doc = Jsoup.connect(url).get();
+        ArrayList<Element> elems = new ArrayList<>();
+        String level = "";
+        String Job = "";
+        Map<String, Object> user = new HashMap<>();
+        user.put("nickname",name);
+
+        Elements elem = doc.select("tr[class=\"search_com_chk\"]");
+
+        // 없는 닉네임일 경우 예외처리
+        // 예외처리시 코드 필요? : 지금 없는 닉네임도 추가하면 만들어짐
+//        if(elem.text().isEmpty()) {
+//            Log.d("text", "empty!");
+//            return "";
+//        }
+
+        int save_dt = 0;
+        int i = 0;
+        for(Element e: elem.select("td")){
+            if(e.text().length() < 3) continue;
+
+            if(e.text().substring(0,3).equals("Lv.")) {
+                // 레벨 정보인 경우 cnt == 2인 경우?
+                level = e.text();
+            } else if(e.text().contains("/")) {
+                // 직업 정보인 경우 cnt == 3인 경우?
+                Job = e.text().substring(e.text().indexOf("/") + 1);
+            }
+        }
+        user.put("img_url",elem.select("img[class=\"\"]").attr("src"));
+        user.put("level",level);
+
+
+        return user;
     }
 
 }
