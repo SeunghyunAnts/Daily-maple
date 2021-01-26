@@ -18,6 +18,7 @@ public class ViewProgressActivity extends AppCompatActivity {
 
     Intent intent;
     View DailyContents;
+    View WeeklyContents;
     String platform;
     String userId;
     String characterId;
@@ -37,6 +38,9 @@ public class ViewProgressActivity extends AppCompatActivity {
         DailyContents = findViewById(R.id.daily);
         DailyContents.setOnClickListener(this::onClickDaily);
 
+        WeeklyContents = findViewById(R.id.weekly);
+        WeeklyContents.setOnClickListener(this::onClickWeekly);
+
         intent = getIntent();
         platform = intent.getStringExtra("platform");
         userId = intent.getStringExtra("userId");
@@ -47,6 +51,14 @@ public class ViewProgressActivity extends AppCompatActivity {
 
     public void onClickDaily(View v) {
         intent = new Intent(this, ViewDailyContentsActivity.class);
+        intent.putExtra("platform", platform);
+        intent.putExtra("userId", userId);
+        intent.putExtra("characterId", characterId);
+        startActivity(intent);
+    }
+
+    public void onClickWeekly(View v) {
+        intent = new Intent(this, ViewWeeklyContentsActivity.class);
         intent.putExtra("platform", platform);
         intent.putExtra("userId", userId);
         intent.putExtra("characterId", characterId);
