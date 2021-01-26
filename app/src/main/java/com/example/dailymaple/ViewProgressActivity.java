@@ -41,7 +41,7 @@ public class ViewProgressActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         Log.d("memo", "asdfdsa");
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu_toolbar, menu);
+        menuInflater.inflate(R.menu.character_menu_toolbar, menu);
         return true;
     }
 
