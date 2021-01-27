@@ -30,6 +30,20 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
     public static final int LENGTH = 12;
     Intent intent;
 
+    public static final int ZAKUM = 0;
+    public static final int HILLA = 1;
+    public static final int BLOODYQUEEN = 2;
+    public static final int PIERRE = 3;
+    public static final int BANBAN = 4;
+    public static final int VELLUM = 5;
+    public static final int HORNTAIL = 6;
+    public static final int VONLEON = 7;
+    public static final int MAGNUS = 8;
+    public static final int PAPULATUS = 9;
+    public static final int ARKARIUM = 10;
+    public static final int PINKBEAN = 11;
+
+
     ImageView[] dailyContents = new ImageView[LENGTH];
     ImageView[] clearMark = new ImageView[LENGTH];
     boolean[] done = new boolean[LENGTH];
@@ -61,31 +75,31 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
         userId = intent.getStringExtra("userId");
         characterId = intent.getStringExtra("characterId");
 
-        dailyContents[0] = findViewById(R.id.zakum);
-        dailyContents[1] = findViewById(R.id.hilla);
-        dailyContents[2] = findViewById(R.id.bloodyqueen);
-        dailyContents[3] = findViewById(R.id.pierre);
-        dailyContents[4] = findViewById(R.id.banban);
-        dailyContents[5] = findViewById(R.id.vellum);
-        dailyContents[6] = findViewById(R.id.magnus);
-        dailyContents[7] = findViewById(R.id.papulatus);
-        dailyContents[8] = findViewById(R.id.horntail);
-        dailyContents[9] = findViewById(R.id.vonleon);
-        dailyContents[10] = findViewById(R.id.arkarium);
-        dailyContents[11] = findViewById(R.id.pinkbean);
+        dailyContents[ZAKUM] = findViewById(R.id.zakum);
+        dailyContents[HILLA] = findViewById(R.id.hilla);
+        dailyContents[BLOODYQUEEN] = findViewById(R.id.bloodyqueen);
+        dailyContents[PIERRE] = findViewById(R.id.pierre);
+        dailyContents[BANBAN] = findViewById(R.id.banban);
+        dailyContents[VELLUM] = findViewById(R.id.vellum);
+        dailyContents[HORNTAIL] = findViewById(R.id.horntail);
+        dailyContents[VONLEON] = findViewById(R.id.vonleon);
+        dailyContents[MAGNUS] = findViewById(R.id.magnus);
+        dailyContents[PAPULATUS] = findViewById(R.id.papulatus);
+        dailyContents[ARKARIUM] = findViewById(R.id.arkarium);
+        dailyContents[PINKBEAN] = findViewById(R.id.pinkbean);
 
-        clearMark[0] = findViewById(R.id.clearzakum);
-        clearMark[1] = findViewById(R.id.clearhilla);
-        clearMark[2] = findViewById(R.id.clearbloodyqueen);
-        clearMark[3] = findViewById(R.id.clearpierre);
-        clearMark[4] = findViewById(R.id.clearbanban);
-        clearMark[5] = findViewById(R.id.clearvellum);
-        clearMark[6] = findViewById(R.id.clearmagnus);
-        clearMark[7] = findViewById(R.id.clearpapulatus);
-        clearMark[8] = findViewById(R.id.clearhorntail);
-        clearMark[9] = findViewById(R.id.clearvonleon);
-        clearMark[10] = findViewById(R.id.cleararkarium);
-        clearMark[11] = findViewById(R.id.clearpinkbean);
+        clearMark[ZAKUM] = findViewById(R.id.clearzakum);
+        clearMark[HILLA] = findViewById(R.id.clearhilla);
+        clearMark[BLOODYQUEEN] = findViewById(R.id.clearbloodyqueen);
+        clearMark[PIERRE] = findViewById(R.id.clearpierre);
+        clearMark[BANBAN] = findViewById(R.id.clearbanban);
+        clearMark[VELLUM] = findViewById(R.id.clearvellum);
+        clearMark[HORNTAIL] = findViewById(R.id.clearhorntail);
+        clearMark[VONLEON] = findViewById(R.id.clearvonleon);
+        clearMark[MAGNUS] = findViewById(R.id.clearmagnus);
+        clearMark[PAPULATUS] = findViewById(R.id.clearpapulatus);
+        clearMark[ARKARIUM] = findViewById(R.id.cleararkarium);
+        clearMark[PINKBEAN] = findViewById(R.id.clearpinkbean);
 
         path = db.collection(platform+"_users")
                 .document(userId)

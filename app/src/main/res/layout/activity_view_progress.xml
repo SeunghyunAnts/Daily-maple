@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:id="@+id/daily"
@@ -36,13 +36,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_weight="4">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:weightSum="17"
@@ -56,20 +61,13 @@
                     android:layout_height="0dp"
                     android:layout_weight="8" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <ProgressBar
+                    android:id="@+id/dailyprogress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="0" />
 
-                    <View
-                        android:id="@+id/dailyprogress"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="77"
-                        android:background="#4CAF50" />
-                </LinearLayout>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -90,7 +88,6 @@
             android:layout_weight="2">
 
             <TextView
-                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="주간"
@@ -101,13 +98,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_weight="4">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:weightSum="17"
@@ -121,20 +123,13 @@
                     android:layout_height="0dp"
                     android:layout_weight="8" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <ProgressBar
+                    android:id="@+id/weeklyprogress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="0" />
 
-                    <View
-                        android:id="@+id/weeklyprogress"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="77"
-                        android:background="#4CAF50" />
-                </LinearLayout>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -164,13 +159,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_weight="4">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:weightSum="17"
@@ -184,19 +184,12 @@
                     android:layout_height="0dp"
                     android:layout_weight="8" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="0" />
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="77"
-                        android:background="#4CAF50" />
-                </LinearLayout>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

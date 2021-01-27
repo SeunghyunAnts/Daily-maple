@@ -300,7 +300,6 @@ public class CharacterActivity extends AppCompatActivity {
                 user.put("level",level);
                 progressDialog.show();
 
-                String[] _characterId = new String[1];
                 db.collection(platform + "_users")
                         .document(userId)
                         .collection("characters")
@@ -315,6 +314,13 @@ public class CharacterActivity extends AppCompatActivity {
                                 textViews_lv[idx].setText(level);
                                 characterId[idx] = characterInfos.get(idx).getCharacterId();
                                 characters[idx].setOnClickListener(CharacterActivity.this::onClickCharacter);
+
+                                DocumentReference path = db.collection(platform + "_users")
+                                        .document(userId)
+                                        .collection("characters")
+                                        .document(characterId[idx]);
+                                ViewDailyContentsActivity.initDB(path.collection("dailycontents"));
+                                ViewWeeklyContentsActivity.initDB(path.collection("weeklycontents"));
 
                                 Glide.with(getApplicationContext()).load(img_url).centerCrop().into(imageViews_chr[idx]);
                                 imageViews_plus[idx].setVisibility(View.INVISIBLE);
@@ -332,13 +338,6 @@ public class CharacterActivity extends AppCompatActivity {
                                 Log.w("Fail", "Error adding document", e);
                             }
                         });
-
-//                DocumentReference path = db.collection(platform + "_users")
-//                        .document(userId)
-//                        .collection("characters")
-//                        .document(_characterId[0]);
-//                ViewDailyContentsActivity.initDB(path.collection("dailycontents"));
-//                ViewWeeklyContentsActivity.initDB(path.collection("weeklycontents"));
             }
         }
         if(requestCode==2){
