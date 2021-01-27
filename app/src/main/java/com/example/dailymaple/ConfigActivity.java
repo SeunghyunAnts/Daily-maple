@@ -1,6 +1,5 @@
 package com.example.dailymaple;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.work.WorkManager;
@@ -10,7 +9,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -40,12 +38,12 @@ public class ConfigActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        // 현재 캐릭터 이름 TextView
-        configCharacterTextView = (TextView) findViewById(R.id.current_character_name);
+//        // 현재 캐릭터 이름 TextView
+//        configCharacterTextView = (TextView) findViewById(R.id.current_character_name);
 
         // 대표 캐릭터 관련 선언
         mainCharacterTextView = (TextView) findViewById(R.id.main_character_name);
-        mainCharacterChangeButton = (ImageView) findViewById(R.id.main_character_btn);
+        mainCharacterChangeButton = (ImageView) findViewById(R.id.update_character_btn);
 
         // 우르스 알림 선언
         ursusNotifyNameTextView = (TextView) findViewById(R.id.ursus_notify_name);
@@ -69,9 +67,6 @@ public class ConfigActivity extends AppCompatActivity {
 
     // 설정 클릭 초기화
     private void initSwitchLayout(final WorkManager workManager) {
-        // 맨 위 글씨 설정
-        configCharacterTextView.setText("환경설정 (전체)");
-
         // 본캐 버튼 설정
         String mainCharacterName = PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY);
         Boolean btnEnable = false;
