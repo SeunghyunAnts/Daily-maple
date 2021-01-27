@@ -271,6 +271,8 @@ public class CharacterActivity extends AppCompatActivity {
         intent.putExtra("platform", platform);
         intent.putExtra("userId", userId);
         intent.putExtra("characterId", characterId[Ints.indexOf(characters_id, v.getId())]);
+        Log.d("error!!!", Integer.toString(characterId.length));
+        Log.d("error!!", Integer.toString(Ints.indexOf(characters_id, v.getId())));
         startActivity(intent);
     }
 
@@ -310,6 +312,8 @@ public class CharacterActivity extends AppCompatActivity {
                                     if(imageViews_plus_id[i]==btn_id){
 //                                        System.out.println("i2 : "+i);
                                         characterInfos.add(new CharacterInfo(documentReference.getId(), name, img_url, level));
+                                        characterId[characterInfos.size() - 1] = characterInfos.get(characterInfos.size() - 1).getCharacterId();
+                                        Log.d("charager ID check : ", characterId[characterInfos.size() - 1]);
                                         textViews_name[i].setText(name);
                                         textViews_lv[i].setText(level);
 
