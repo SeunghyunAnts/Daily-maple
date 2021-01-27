@@ -93,6 +93,11 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
                 .document(characterId)
                 .collection("dailycontents");
         receiveData();
+        try { // TODO: change to Async or import loading process
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         for (int i = 0; i < LENGTH; i++) {
             ImageView _this = dailyContents[i];
@@ -148,8 +153,8 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
                             dailyContents[i].setColorFilter(colorFilter);
                             dailyContents[i].setImageAlpha(200);
 
-                            Animation animation =  AnimationUtils.loadAnimation(ViewDailyContentsActivity.this, R.anim.fade_in);
-                            clearMark[i].startAnimation(animation);
+//                            Animation animation =  AnimationUtils.loadAnimation(ViewDailyContentsActivity.this, R.anim.fade_in);
+//                            clearMark[i].startAnimation(animation);
                             clearMark[i].setVisibility(View.VISIBLE);
                         } else {
                             done[i] = false;

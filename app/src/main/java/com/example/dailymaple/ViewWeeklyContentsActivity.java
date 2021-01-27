@@ -88,6 +88,11 @@ public class ViewWeeklyContentsActivity extends AppCompatActivity {
                 .document(characterId)
                 .collection("weeklycontents");
         receiveData();
+        try { // TODO: change to Async or import loading process
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         for (int i = 0; i < LENGTH; i++) {
             ImageView _this = weeklyContents[i];
@@ -143,8 +148,8 @@ public class ViewWeeklyContentsActivity extends AppCompatActivity {
                             weeklyContents[i].setColorFilter(colorFilter);
                             weeklyContents[i].setImageAlpha(200);
 
-                            Animation animation =  AnimationUtils.loadAnimation(ViewWeeklyContentsActivity.this, R.anim.fade_in);
-                            clearMark[i].startAnimation(animation);
+//                            Animation animation =  AnimationUtils.loadAnimation(ViewWeeklyContentsActivity.this, R.anim.fade_in);
+//                            clearMark[i].startAnimation(animation);
                             clearMark[i].setVisibility(View.VISIBLE);
                         } else {
                             done[i] = false;
