@@ -170,7 +170,6 @@ public class CharacterActivity extends AppCompatActivity {
 //            imageViews_plus[i] = findViewById(imageViews_plus_id[i]);
                                 imageViews_plus[i].setOnClickListener(CharacterActivity.this::onClickPlus);
                                 characters[i].setOnLongClickListener(CharacterActivity.this::onLongClickCharacter);
-                                characters[i].setOnClickListener(CharacterActivity.this::onClickCharacter);
                             }
                             tableRow1 = findViewById(R.id.tableRow1);
                             tableRow2 = findViewById(R.id.tableRow2);
@@ -179,7 +178,7 @@ public class CharacterActivity extends AppCompatActivity {
 
                             tableRows = new TableRow[]{tableRow1,tableRow2, tableRow3, tableRow4};
                             for(int i=0;i<imageViews_plus_id.length;i++){
-                                System.out.println("i : "+imageViews_plus_id[i]);
+//                                System.out.println("i : "+imageViews_plus_id[i]);
                             }
 
 
@@ -191,10 +190,10 @@ public class CharacterActivity extends AppCompatActivity {
                                 Thread thread = new Thread() {
                                     public void run() {
                                         try {
-                                            System.out.println("before : " + document.getData().get("nickname").toString());
+//                                            System.out.println("before : " + document.getData().get("nickname").toString());
                                             refreshUser = new HashMap<>();
                                             refreshUser = refresh("https://maplestory.nexon.com/Ranking/World/Total?c="+document.getData().get("nickname").toString(), document.getData().get("nickname").toString());
-                                            System.out.println("after : " + refreshUser.get("img_url"));
+//                                            System.out.println("after : " + refreshUser.get("img_url"));
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -222,7 +221,7 @@ public class CharacterActivity extends AppCompatActivity {
                                 }
 
                                 characterInfos.add(characterInfo);
-                                System.out.println(characterInfo.getNickname());
+//                                System.out.println(characterInfo.getNickname());
                             }
 
                             for(int i=0;i<characterInfos.size();i++){
@@ -233,6 +232,7 @@ public class CharacterActivity extends AppCompatActivity {
                                 imageViews_plus[i].setVisibility(View.INVISIBLE);
                                 textViews_name[i].setText(characterInfos.get(i).getNickname());
                                 textViews_lv[i].setText(characterInfos.get(i).getLevel());
+                                characters[i].setOnClickListener(CharacterActivity.this::onClickCharacter);
                                 Glide.with(getApplicationContext()).load(characterInfos.get(i).getImgUrl()).centerCrop().into(imageViews_chr[i]);
 
 
@@ -247,7 +247,7 @@ public class CharacterActivity extends AppCompatActivity {
                             setSupportActionBar(toolbar);
                             getSupportActionBar().setDisplayShowTitleEnabled(false);
                             for(int j=0;j<characterInfos.size();j++){
-                                System.out.println("Current characterID : "+characterInfos.get(j).getCharacterId());
+//                                System.out.println("Current characterID : "+characterInfos.get(j).getCharacterId());
                                 characterId[j] = characterInfos.get(j).getCharacterId();
                             }
                         } else {
@@ -271,6 +271,7 @@ public class CharacterActivity extends AppCompatActivity {
         intent.putExtra("platform", platform);
         intent.putExtra("userId", userId);
         intent.putExtra("characterId", characterId[Ints.indexOf(characters_id, v.getId())]);
+        System.out.println(characterId[Ints.indexOf(characters_id, v.getId())]);
         startActivity(intent);
     }
 
@@ -291,13 +292,15 @@ public class CharacterActivity extends AppCompatActivity {
                 int btn_id = data.getIntExtra("btn_id",0);
                 String img_url = data.getStringExtra("img_url");
                 String level = data.getStringExtra("level");
-                System.out.println("btn_id : "+btn_id);
+//                System.out.println("btn_id : "+btn_id);
 
                 Map<String, Object> user = new HashMap<>();
                 user.put("nickname", name);
                 user.put("img_url", img_url);
                 user.put("level",level);
                 progressDialog.show();
+
+                String[] _characterId = new String[1];
                 db.collection(platform + "_users")
                         .document(userId)
                         .collection("characters")
@@ -306,34 +309,19 @@ public class CharacterActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d("Success", "DocumentSnapshot added with ID: "+documentReference.getId());
-                                for(int i=0;i<imageViews_plus_id.length;i++){
-                                    if(imageViews_plus_id[i]==btn_id){
-//                                        System.out.println("i2 : "+i);
+                                int idx = Ints.indexOf(imageViews_plus_id, btn_id);
+                                characterInfos.add(new CharacterInfo(documentReference.getId(), name, img_url, level));
+                                textViews_name[idx].setText(name);
+                                textViews_lv[idx].setText(level);
+                                characterId[idx] = characterInfos.get(idx).getCharacterId();
+                                characters[idx].setOnClickListener(CharacterActivity.this::onClickCharacter);
 
-                                        DocumentReference path = db.collection(platform + "_users")
-                                                .document(userId)
-                                                .collection("characters")
-                                                .document(documentReference.getId());
-                                        ViewDailyContentsActivity.initDB(path.collection("dailycontents"));
-                                        ViewWeeklyContentsActivity.initDB(path.collection("weeklycontents"));
-
-                                        characterInfos.add(new CharacterInfo(documentReference.getId(), name, img_url, level));
-                                        textViews_name[i].setText(name);
-                                        textViews_lv[i].setText(level);
-
-                                        Glide.with(getApplicationContext()).load(img_url).centerCrop().into(imageViews_chr[i]);
-                                        imageViews_plus[i].setVisibility(View.INVISIBLE);
-                                        if((i+1)%3==0 && i!=imageViews_plus_id.length-1){
-                                            tableRows[(i+1)/3].setVisibility(View.VISIBLE);
-                                            break;
-                                        }
-                                        if(i!=imageViews_plus_id.length-1){
-                                            frameLayouts[i+1].setVisibility(View.VISIBLE);
-                                        }
-
-
-                                        break;
-                                    }
+                                Glide.with(getApplicationContext()).load(img_url).centerCrop().into(imageViews_chr[idx]);
+                                imageViews_plus[idx].setVisibility(View.INVISIBLE);
+                                if ((idx+1)%3 == 0 && idx != imageViews_plus_id.length-1) {
+                                    tableRows[(idx+1)/3].setVisibility(View.VISIBLE);
+                                } else if (idx != imageViews_plus_id.length-1) {
+                                    frameLayouts[idx+1].setVisibility(View.VISIBLE);
                                 }
                                 progressDialog.dismiss();
                             }
@@ -344,6 +332,13 @@ public class CharacterActivity extends AppCompatActivity {
                                 Log.w("Fail", "Error adding document", e);
                             }
                         });
+
+//                DocumentReference path = db.collection(platform + "_users")
+//                        .document(userId)
+//                        .collection("characters")
+//                        .document(_characterId[0]);
+//                ViewDailyContentsActivity.initDB(path.collection("dailycontents"));
+//                ViewWeeklyContentsActivity.initDB(path.collection("weeklycontents"));
             }
         }
         if(requestCode==2){
@@ -353,7 +348,7 @@ public class CharacterActivity extends AppCompatActivity {
                 for(int i=0;i<characters_id.length;i++){
                     if(btn_id==characters_id[i]){
                         for(int j=0;j<characterInfos.size();j++){
-                            System.out.println("Befroe characterID : "+characterInfos.get(j).getCharacterId());
+//                            System.out.println("Befroe characterID : "+characterInfos.get(j).getCharacterId());
                         }
                         delete_i = i;
                         db.collection(platform + "_users")
@@ -390,7 +385,7 @@ public class CharacterActivity extends AppCompatActivity {
 //                                        }
                                         progressDialog.dismiss();
                                         for(int j=0;j<characterInfos.size();j++){
-                                            System.out.println("After characterID : "+characterInfos.get(j).getCharacterId());
+//                                            System.out.println("After characterID : "+characterInfos.get(j).getCharacterId());
                                         }
                                     }
                                 })
@@ -443,7 +438,7 @@ public class CharacterActivity extends AppCompatActivity {
     }
 
     Map<String,Object> refresh(String url, String name) throws IOException {
-        System.out.println(url);
+//        System.out.println(url);
         Document doc = Jsoup.connect(url).get();
         ArrayList<Element> elems = new ArrayList<>();
         String level = "";

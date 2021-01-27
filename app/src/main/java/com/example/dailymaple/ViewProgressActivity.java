@@ -45,7 +45,7 @@ public class ViewProgressActivity extends AppCompatActivity {
         platform = intent.getStringExtra("platform");
         userId = intent.getStringExtra("userId");
         characterId = intent.getStringExtra("characterId");
-        Log.i("characterId", characterId);
+//        Log.i("characterId", characterId);
 
     }
 

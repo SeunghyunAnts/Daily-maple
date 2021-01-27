@@ -102,7 +102,6 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
         for (int i = 0; i < LENGTH; i++) {
             ImageView _this = dailyContents[i];
             int finalI = i;
-            System.out.println(i+"번째: "+done[i]);
             _this.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -142,7 +141,6 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     int i = 0;
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d("TAG", document.getId() + " => " + document.getData() + task.getResult().size());
                         if ((boolean)document.getData().get("done")) {
                             done[i] = true;
                             ColorMatrix matrix = new ColorMatrix();
@@ -153,8 +151,6 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
                             dailyContents[i].setColorFilter(colorFilter);
                             dailyContents[i].setImageAlpha(200);
 
-//                            Animation animation =  AnimationUtils.loadAnimation(ViewDailyContentsActivity.this, R.anim.fade_in);
-//                            clearMark[i].startAnimation(animation);
                             clearMark[i].setVisibility(View.VISIBLE);
                         } else {
                             done[i] = false;
@@ -182,7 +178,7 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
                     for (int i = 0; i < LENGTH; i++) {
                         data.put("done", false);
                         data.put("name", bossname[i]);
-                        path.document(Integer.toString(i)).set(data);
+                        path.document(Integer.toString(i)).set(data, SetOptions.merge());
                     }
                 }
                 else {

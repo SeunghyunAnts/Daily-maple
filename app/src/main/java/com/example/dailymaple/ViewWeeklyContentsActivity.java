@@ -101,6 +101,7 @@ public class ViewWeeklyContentsActivity extends AppCompatActivity {
             _this.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.i("Click", bossname[finalI]);
                     ImageView iv_tmp = (ImageView) v;
                     if (done[finalI]) {
                         iv_tmp.setColorFilter(null);
@@ -177,7 +178,7 @@ public class ViewWeeklyContentsActivity extends AppCompatActivity {
                     for (int i = 0; i < LENGTH; i++) {
                         data.put("done", false);
                         data.put("name", bossname[i]);
-                        path.document(Integer.toString(i)).set(data);
+                        path.document(Integer.toString(i)).set(data, SetOptions.merge());
                     }
                 }
                 else {
