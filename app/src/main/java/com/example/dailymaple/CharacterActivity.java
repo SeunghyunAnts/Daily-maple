@@ -309,6 +309,14 @@ public class CharacterActivity extends AppCompatActivity {
                                 for(int i=0;i<imageViews_plus_id.length;i++){
                                     if(imageViews_plus_id[i]==btn_id){
 //                                        System.out.println("i2 : "+i);
+
+                                        DocumentReference path = db.collection(platform + "_users")
+                                                .document(userId)
+                                                .collection("characters")
+                                                .document(documentReference.getId());
+                                        ViewDailyContentsActivity.initDB(path.collection("dailycontents"));
+                                        ViewWeeklyContentsActivity.initDB(path.collection("weeklycontents"));
+
                                         characterInfos.add(new CharacterInfo(documentReference.getId(), name, img_url, level));
                                         textViews_name[i].setText(name);
                                         textViews_lv[i].setText(level);

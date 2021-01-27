@@ -33,7 +33,7 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
     ImageView[] dailyContents = new ImageView[LENGTH];
     ImageView[] clearMark = new ImageView[LENGTH];
     boolean[] done = new boolean[LENGTH];
-    String[] bossname = { // order is important.
+    public static String[] bossname = { // order is important.
             "zakum", "hilla",
             "bloodyqueen", "pierre",
             "banban", "vellum",
@@ -164,6 +164,25 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
                             clearMark[i].setVisibility(View.INVISIBLE);
                         }
                         i++;
+                    }
+                }
+                else {
+                    System.out.println("fail");
+                }
+            }
+        });
+    }
+
+    public static void initDB(CollectionReference path) {
+        path.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    Map <String, Object> data = new HashMap<>();
+                    for (int i = 0; i < LENGTH; i++) {
+                        data.put("done", false);
+                        data.put("name", bossname[i]);
+                        path.document(Integer.toString(i)).set(data);
                     }
                 }
                 else {
