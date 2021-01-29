@@ -10,12 +10,15 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar_todo" />
 
     <LinearLayout
         android:id="@+id/daily"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="7">
@@ -28,8 +31,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="일간"
-                android:textSize="30sp"
+                android:text="일간보스"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +71,8 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:progressDrawable="@drawable/progress_design" />
 
             </LinearLayout>
 
@@ -78,6 +84,8 @@
         android:id="@+id/weekly"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="7">
@@ -90,8 +98,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="주간"
-                android:textSize="30sp"
+                android:text="주간보스"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +138,8 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:progressDrawable="@drawable/progress_design" />
 
             </LinearLayout>
 
@@ -139,6 +150,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="200dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="7">
@@ -152,7 +166,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="기타"
-                android:textSize="30sp"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +204,8 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:progressDrawable="@drawable/progress_design" />
 
             </LinearLayout>
 
