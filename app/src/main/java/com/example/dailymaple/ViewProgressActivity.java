@@ -81,10 +81,13 @@ public class ViewProgressActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.action_setting:
-                // User chose the "Settings" item, show the app settings UI...
-                Toast.makeText(getApplicationContext(), "환경설정 버튼 클릭됨", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, CharacterConfigActivity.class);
 
+                intent.putExtra("platform", platform);
+                intent.putExtra("userId", userId);
+                intent.putExtra("characterId", characterId);
 
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

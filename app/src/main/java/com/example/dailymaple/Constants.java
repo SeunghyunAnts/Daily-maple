@@ -53,7 +53,26 @@ public class Constants {
     public static void setDailyBossTime(Integer dailyBossTime) {
         DAILY_BOSS_TIME = dailyBossTime;
     }
-    public static void setWeeklyBossTime(Integer weeklyBossTime) {
-        WEEKLY_BOSS_TIME = weeklyBossTime;
-    }
+    public static void setWeeklyBossTime(Integer weeklyBossTime) { WEEKLY_BOSS_TIME = weeklyBossTime; }
+
+    // Daily Contents
+    public static Integer DailyContentsLength = 12;
+    public static String[] DailyContentsName = {
+            "zakum", "hilla",
+            "bloodyqueen", "pierre",
+            "banban", "vellum",
+            "horntail", "vonleon",
+            "magnus", "papulatus",
+            "arkarium", "pinkbean"
+    };
+
+    // Weekly Contents
+    public static Integer WeeklyContentsLength = 10;
+    public static String[] WeeklyContentsName = { // order is important.
+            "zakum", "hilla",
+            "bloodyqueen", "pierre",
+            "banban", "vellum",
+            "magnus", "papulatus",
+            "lotus", "damien"
+    };
 }
