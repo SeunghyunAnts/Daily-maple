@@ -192,7 +192,6 @@ public class CharacterActivity extends AppCompatActivity {
                                     findViewById(textViews_lv_id[9]),findViewById(textViews_lv_id[10]),findViewById(textViews_lv_id[11])};
 
                             for(int i=0;i<imageViews_plus_id.length;i++){
-//            imageViews_plus[i] = findViewById(imageViews_plus_id[i]);
                                 imageViews_plus[i].setOnClickListener(CharacterActivity.this::onClickPlus);
                                 characters[i].setOnLongClickListener(CharacterActivity.this::onLongClickCharacter);
                                 characters[i].setOnClickListener(CharacterActivity.this::onClickCharacter);
@@ -232,19 +231,15 @@ public class CharacterActivity extends AppCompatActivity {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                            }
-
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                if(document.getData().get("img_url")==null || document.getData().get("level")==null){
 
                                 if(refreshUser.get("img_url").toString() == null || refreshUser.get("level").toString() == null) {
-                                    characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString());
+                                    characterInfo = new CharacterInfo(document.getId(), refreshUser.get("nickname").toString());
                                 }
                                 else{
-                                    characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString(), refreshUser.get("img_url").toString(), refreshUser.get("level").toString());
+                                    characterInfo = new CharacterInfo(document.getId(), refreshUser.get("nickname").toString(), refreshUser.get("img_url").toString(), refreshUser.get("level").toString());
                                 }
-
                                 characterInfos.add(characterInfo);
+                                Log.d("info add : ", characterInfo.toString());
                                 System.out.println(characterInfo.getNickname());
                             }
 
@@ -254,11 +249,10 @@ public class CharacterActivity extends AppCompatActivity {
                                 }
                                 frameLayouts[i].setVisibility(View.VISIBLE);
                                 imageViews_plus[i].setVisibility(View.INVISIBLE);
+
                                 textViews_name[i].setText(characterInfos.get(i).getNickname());
                                 textViews_lv[i].setText(characterInfos.get(i).getLevel());
                                 Glide.with(getApplicationContext()).load(characterInfos.get(i).getImgUrl()).centerCrop().into(imageViews_chr[i]);
-
-
                             }
                             if(characterInfos.size()!=imageViews_plus_id.length){
                                 frameLayouts[characterInfos.size()].setVisibility(View.VISIBLE);
