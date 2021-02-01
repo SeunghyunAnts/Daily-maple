@@ -331,19 +331,19 @@ public class CharacterActivity extends AppCompatActivity {
                 user.put("level",level);
 
                 // 컨텐츠 정보
-                ArrayList<Integer> daily_content = new ArrayList<>();
+                ArrayList<Boolean> daily_content = new ArrayList<>();
                 ArrayList<Boolean> daily_content_alert = new ArrayList<>();
-                ArrayList<Integer> weekly_content = new ArrayList<>();
+                ArrayList<Boolean> weekly_content = new ArrayList<>();
                 ArrayList<Boolean> weekly_content_alert = new ArrayList<>();
 
                 // List 초기화
                 for(int temp = 0; temp < DailyContentsLength; temp++) {
-                    daily_content.add(0);
+                    daily_content.add(false);
                     daily_content_alert.add(false);
                 }
 
                 for(int temp = 0; temp < WeeklyContentsLength; temp++) {
-                    weekly_content.add(0);
+                    weekly_content.add(false);
                     weekly_content_alert.add(false);
                 }
 
