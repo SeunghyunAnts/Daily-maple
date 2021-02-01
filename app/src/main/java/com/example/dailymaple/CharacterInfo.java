@@ -44,4 +44,13 @@ public class CharacterInfo implements Serializable {
         return  this.level;
     }
 
+    @Override
+    public String toString() {
+        return "CharacterInfo{" +
+                "character_id='" + character_id + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", img_url='" + img_url + '\'' +
+                ", level='" + level + '\'' +
+                '}';
+    }
 }
