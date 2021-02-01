@@ -7,6 +7,9 @@ public class Constants {
     public static final String SHARED_PREF_DAILY_BOSS_KEY = "Daily Boss";
     public static final String SHARED_PREF_WEEKLY_BOSS_KEY = "Weekly Boss";
 
+    public static final String SHARED_PREF_PLATFORM_KEY = "Platform";
+    public static final String SHARED_PREF_USER_KEY = "User";
+
     // Notification Channel ID
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
 
