@@ -134,17 +134,11 @@ public class CharacterActivity extends AppCompatActivity {
         // Intent from LoginActivity
         intentFromLogin = getIntent();
 
-//        Intent를 이용한 로그인정보 전달
-//        Log.d("platform", intentFromLogin.getStringExtra("platform"));
-//        Log.d("id", intentFromLogin.getStringExtra("id"));
-//        platform = intentFromLogin.getStringExtra("platform");
-//        userId = intentFromLogin.getStringExtra("id");
-
         // 로그인 정보를 저장
         platform = PreferenceHelper.getString(getApplicationContext(), SHARED_PREF_PLATFORM_KEY);
         userId = PreferenceHelper.getString(getApplicationContext(), SHARED_PREF_USER_KEY);
 
-        Log.d("CharacterActivity", platform + " " + userId);
+        Log.d("CharacterActivity : ", platform + " " + userId);
 
         // Progress dialog 설정
         progressDialog = new ProgressDialog(this);
@@ -160,6 +154,7 @@ public class CharacterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            Log.d("onComplete : " , "View 초기화");
                             setContentView(R.layout.activity_character);
                             imageViews_plus = new ImageView[]{findViewById(imageViews_plus_id[0]), findViewById(imageViews_plus_id[1]), findViewById(imageViews_plus_id[2]),
                                     findViewById(imageViews_plus_id[3]), findViewById(imageViews_plus_id[4]), findViewById(imageViews_plus_id[5]),
@@ -202,19 +197,15 @@ public class CharacterActivity extends AppCompatActivity {
                             tableRow4 = findViewById(R.id.tableRow4);
 
                             tableRows = new TableRow[]{tableRow1,tableRow2, tableRow3, tableRow4};
-                            for(int i=0;i<imageViews_plus_id.length;i++){
-                                System.out.println("i : "+imageViews_plus_id[i]);
-                            }
+                            Log.d("imageView id : ", Arrays.toString(imageViews_plus_id));
 
+                            Log.d("firestore : ", "get data start");
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("", document.getId() + " => " + document.getData());
                                 Thread thread = new Thread() {
                                     public void run() {
                                         try {
-                                            System.out.println("before : " + document.getData().get("nickname").toString());
                                             refreshUser = new HashMap<>();
                                             refreshUser = refresh("https://maplestory.nexon.com/Ranking/World/Total?c="+document.getData().get("nickname").toString(), document.getData().get("nickname").toString());
-                                            System.out.println("after : " + refreshUser.get("img_url"));
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -223,6 +214,7 @@ public class CharacterActivity extends AppCompatActivity {
                                 thread.start();
                                 try {
                                     thread.join();
+                                    Log.d("firestore : ", "merge new data (" + refreshUser.get("nickname")+")");
                                     db.collection(platform + "_users")
                                             .document(userId)
                                             .collection("characters")
@@ -240,9 +232,9 @@ public class CharacterActivity extends AppCompatActivity {
                                 }
                                 characterInfos.add(characterInfo);
                                 Log.d("info add : ", characterInfo.toString());
-                                System.out.println(characterInfo.getNickname());
                             }
 
+                            Log.d("view : ", "show character infos");
                             for(int i=0;i<characterInfos.size();i++){
                                 if((i+1)%3==0 && i!=imageViews_plus_id.length-1){
                                     tableRows[(i+1)/3].setVisibility(View.VISIBLE);
@@ -265,7 +257,7 @@ public class CharacterActivity extends AppCompatActivity {
                             getSupportActionBar().setDisplayShowTitleEnabled(false);
 
                             for(int j=0;j<characterInfos.size();j++){
-                                System.out.println("Current characterID : "+characterInfos.get(j).getCharacterId());
+                                Log.d("init finished : ", "Current characterID > "+characterInfos.get(j).getCharacterId());
                                 characterId[j] = characterInfos.get(j).getCharacterId();
                             }
                         } else {
