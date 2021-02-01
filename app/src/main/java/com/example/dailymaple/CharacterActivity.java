@@ -2,6 +2,7 @@ package com.example.dailymaple;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -30,9 +32,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.primitives.Ints;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -40,14 +44,22 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.net.URL;
 import java.io.OutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
+import static com.example.dailymaple.Constants.DailyContentsLength;
+import static com.example.dailymaple.Constants.SHARED_PREF_PLATFORM_KEY;
+import static com.example.dailymaple.Constants.SHARED_PREF_USER_KEY;
+import static com.example.dailymaple.Constants.WeeklyContentsLength;
 
 public class CharacterActivity extends AppCompatActivity {
 
@@ -110,6 +122,8 @@ public class CharacterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
+        
+        // DB에서 불러올 캐릭터 정보 배열
         characterInfos = new ArrayList<CharacterInfo>();
 
         // 툴바 설정
@@ -117,16 +131,27 @@ public class CharacterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        // Intent from LoginActivity
         intentFromLogin = getIntent();
-        Log.d("platform", intentFromLogin.getStringExtra("platform"));
-        Log.d("id", intentFromLogin.getStringExtra("id"));
-        platform = intentFromLogin.getStringExtra("platform");
-        userId = intentFromLogin.getStringExtra("id");
+
+//        Intent를 이용한 로그인정보 전달
+//        Log.d("platform", intentFromLogin.getStringExtra("platform"));
+//        Log.d("id", intentFromLogin.getStringExtra("id"));
+//        platform = intentFromLogin.getStringExtra("platform");
+//        userId = intentFromLogin.getStringExtra("id");
+
+        // 로그인 정보를 저장
+        platform = PreferenceHelper.getString(getApplicationContext(), SHARED_PREF_PLATFORM_KEY);
+        userId = PreferenceHelper.getString(getApplicationContext(), SHARED_PREF_USER_KEY);
+
+        Log.d("CharacterActivity", platform + " " + userId);
+
+        // Progress dialog 설정
         progressDialog = new ProgressDialog(this);
         progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         progressDialog.show();
         progressDialog.setCancelable(false);
-//
+
         db.collection(platform + "_users")
                 .document(userId)
                 .collection("characters")
@@ -182,10 +207,6 @@ public class CharacterActivity extends AppCompatActivity {
                                 System.out.println("i : "+imageViews_plus_id[i]);
                             }
 
-
-//                            character = findViewById(R.id.character);
-//                            character.setOnClickListener(CharacterActivity.this::onClickCharacter);
-
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("", document.getId() + " => " + document.getData());
                                 Thread thread = new Thread() {
@@ -207,18 +228,20 @@ public class CharacterActivity extends AppCompatActivity {
                                             .document(userId)
                                             .collection("characters")
                                             .document(document.getId())
-                                            .set(refreshUser);
+                                            .set(refreshUser, SetOptions.merge());
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
                             }
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.getData().get("img_url")==null || document.getData().get("level")==null){
+//                                if(document.getData().get("img_url")==null || document.getData().get("level")==null){
+
+                                if(refreshUser.get("img_url").toString() == null || refreshUser.get("level").toString() == null) {
                                     characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString());
                                 }
                                 else{
-                                    characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString(), document.getData().get("img_url").toString(), document.getData().get("level").toString());
+                                    characterInfo = new CharacterInfo(document.getId(), document.getData().get("nickname").toString(), refreshUser.get("img_url").toString(), refreshUser.get("level").toString());
                                 }
 
                                 characterInfos.add(characterInfo);
@@ -246,6 +269,7 @@ public class CharacterActivity extends AppCompatActivity {
                             Toolbar toolbar = findViewById(R.id.toolbar);
                             setSupportActionBar(toolbar);
                             getSupportActionBar().setDisplayShowTitleEnabled(false);
+
                             for(int j=0;j<characterInfos.size();j++){
                                 System.out.println("Current characterID : "+characterInfos.get(j).getCharacterId());
                                 characterId[j] = characterInfos.get(j).getCharacterId();
@@ -256,23 +280,19 @@ public class CharacterActivity extends AppCompatActivity {
                     }
                 });
 
-
     }
 
     public void onClickPlus(View v){
         intent = new Intent(this, AddPopupActivity.class);
-//        startActivity(intent);
         intent.putExtra("btn_id",v.getId());
         startActivityForResult(intent, 1);
     }
 
     public void onClickCharacter(View v){
         intent = new Intent(this, ViewProgressActivity.class);
-        intent.putExtra("platform", platform);
-        intent.putExtra("userId", userId);
+//        intent.putExtra("platform", platform);
+//        intent.putExtra("userId", userId);
         intent.putExtra("characterId", characterId[Ints.indexOf(characters_id, v.getId())]);
-        Log.d("error!!!", Integer.toString(characterId.length));
-        Log.d("error!!", Integer.toString(Ints.indexOf(characters_id, v.getId())));
         startActivity(intent);
     }
 
@@ -281,9 +301,10 @@ public class CharacterActivity extends AppCompatActivity {
         intentDelete.putExtra("btn_id", v.getId());
 
         startActivityForResult(intentDelete, 2);
-
         return true;
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -295,25 +316,61 @@ public class CharacterActivity extends AppCompatActivity {
                 String level = data.getStringExtra("level");
                 System.out.println("btn_id : "+btn_id);
 
+                // Firestore 문서에 삽입할 데이터 선택
                 Map<String, Object> user = new HashMap<>();
+
+                // 저장할 문서 설정
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+                String docuName = sdf.format(new Date())+"";
+                user.put("doc_name", docuName);
+                user.put("timestamp", FieldValue.serverTimestamp());
+
+                // 캐릭터 정보
                 user.put("nickname", name);
                 user.put("img_url", img_url);
                 user.put("level",level);
+
+                // 컨텐츠 정보
+                ArrayList<Integer> daily_content = new ArrayList<>();
+                ArrayList<Boolean> daily_content_alert = new ArrayList<>();
+                ArrayList<Integer> weekly_content = new ArrayList<>();
+                ArrayList<Boolean> weekly_content_alert = new ArrayList<>();
+
+                // List 초기화
+                for(int temp = 0; temp < DailyContentsLength; temp++) {
+                    daily_content.add(0);
+                    daily_content_alert.add(false);
+                }
+
+                for(int temp = 0; temp < WeeklyContentsLength; temp++) {
+                    weekly_content.add(0);
+                    weekly_content_alert.add(false);
+                }
+
+                user.put("daily_contents", daily_content);
+                user.put("daily_contents_alert", daily_content_alert);
+                user.put("weekly_contents", weekly_content);
+                user.put("weekly_contents_alert", weekly_content_alert);
+
+                // 캐릭터 정보를 삽입할 때 까지 Progress dialog 표시
                 progressDialog.show();
-                db.collection(platform + "_users")
+
+                // 새로운 캐릭터 추가 한 문서(docuName)에 구현
+               db.collection(platform + "_users")
                         .document(userId)
                         .collection("characters")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        .document(docuName)
+                        .set(user)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("Success", "DocumentSnapshot added with ID: "+documentReference.getId());
+                            public void onSuccess(Void aVoid) {
+                                Log.d("Success", "DocumentSnapshot added with ID: "+ docuName);
                                 for(int i=0;i<imageViews_plus_id.length;i++){
                                     if(imageViews_plus_id[i]==btn_id){
 //                                        System.out.println("i2 : "+i);
-                                        characterInfos.add(new CharacterInfo(documentReference.getId(), name, img_url, level));
+                                        characterInfos.add(new CharacterInfo(docuName, name, img_url, level));
                                         characterId[characterInfos.size() - 1] = characterInfos.get(characterInfos.size() - 1).getCharacterId();
-                                        Log.d("charager ID check : ", characterId[characterInfos.size() - 1]);
+//                                        Log.d("characer ID check : ", characterId[characterInfos.size() - 1]);
                                         textViews_name[i].setText(name);
                                         textViews_lv[i].setText(level);
 
@@ -326,11 +383,10 @@ public class CharacterActivity extends AppCompatActivity {
                                         if(i!=imageViews_plus_id.length-1){
                                             frameLayouts[i+1].setVisibility(View.VISIBLE);
                                         }
-
-
                                         break;
                                     }
                                 }
+                                // 삽입 이후 Progress dialog 숨김
                                 progressDialog.dismiss();
                             }
                         })
@@ -338,6 +394,7 @@ public class CharacterActivity extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Log.w("Fail", "Error adding document", e);
+                                progressDialog.dismiss();
                             }
                         });
             }
@@ -348,9 +405,9 @@ public class CharacterActivity extends AppCompatActivity {
                 progressDialog.show();
                 for(int i=0;i<characters_id.length;i++){
                     if(btn_id==characters_id[i]){
-                        for(int j=0;j<characterInfos.size();j++){
-                            System.out.println("Befroe characterID : "+characterInfos.get(j).getCharacterId());
-                        }
+//                        for(int j=0;j<characterInfos.size();j++){
+//                            System.out.println("Befroe characterID : "+characterInfos.get(j).getCharacterId());
+//                        }
                         delete_i = i;
                         db.collection(platform + "_users")
                                 .document(userId)
@@ -385,9 +442,9 @@ public class CharacterActivity extends AppCompatActivity {
 //                                            frameLayouts[characterInfos.size()].setVisibility(View.VISIBLE);
 //                                        }
                                         progressDialog.dismiss();
-                                        for(int j=0;j<characterInfos.size();j++){
-                                            System.out.println("After characterID : "+characterInfos.get(j).getCharacterId());
-                                        }
+//                                        for(int j=0;j<characterInfos.size();j++){
+//                                            System.out.println("After characterID : "+characterInfos.get(j).getCharacterId());
+//                                        }
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -410,19 +467,14 @@ public class CharacterActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        Log.d("memo", "asdfdsa");
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu_toolbar, menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        //return super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case R.id.action_setting:
-                // User chose the "Settings" item, show the app settings UI...
-                Toast.makeText(getApplicationContext(), "환경설정 버튼 클릭됨", Toast.LENGTH_LONG).show();
-
                 Intent intent = new Intent(this, ConfigActivity.class);
                 intent.putExtra("Characters", characterInfos);
                 startActivity(intent);
@@ -430,8 +482,6 @@ public class CharacterActivity extends AppCompatActivity {
                 return true;
 
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 Toast.makeText(getApplicationContext(), "나머지 버튼 클릭됨", Toast.LENGTH_LONG).show();
                 return super.onOptionsItemSelected(item);
 
@@ -449,13 +499,6 @@ public class CharacterActivity extends AppCompatActivity {
 
         Elements elem = doc.select("tr[class=\"search_com_chk\"]");
 
-        // 없는 닉네임일 경우 예외처리
-        // 예외처리시 코드 필요? : 지금 없는 닉네임도 추가하면 만들어짐
-//        if(elem.text().isEmpty()) {
-//            Log.d("text", "empty!");
-//            return "";
-//        }
-
         int save_dt = 0;
         int i = 0;
         for(Element e: elem.select("td")){
@@ -471,7 +514,6 @@ public class CharacterActivity extends AppCompatActivity {
         }
         user.put("img_url",elem.select("img[class=\"\"]").attr("src"));
         user.put("level",level);
-
 
         return user;
     }
