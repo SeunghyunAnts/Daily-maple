@@ -1,11 +1,11 @@
 package com.example.dailymaple
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -99,8 +99,13 @@ class LoginActivity : AppCompatActivity() {
 
                 // 정보 요청 성공 시 메인 액티비티로 전환
                 val intent = Intent(this, CharacterActivity::class.java)
-                intent.putExtra("platform", "Kakao")
-                intent.putExtra("id", id)
+
+                // 로그인 시 정보를 Shared Preference에 저장 : getString으로 접근 가능
+                PreferenceHelper.setString(applicationContext, Constants.SHARED_PREF_PLATFORM_KEY, "Kakao")
+                PreferenceHelper.setString(applicationContext, Constants.SHARED_PREF_USER_KEY, id);
+
+//                intent.putExtra("platform", "Kakao")
+//                intent.putExtra("id", id)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
         }

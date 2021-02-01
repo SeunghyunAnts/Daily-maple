@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ConfigActivity">
+    tools:context=".CharacterConfigActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_setting" />
 
     <LinearLayout
-        android:id="@+id/main_character"
+        android:id="@+id/update_character"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:text="대표 캐릭터 설정  "
+                    android:text="캐릭터 정보 갱신  "
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="대표 캐릭터 미설정"
+                    android:text="방금"
                     android:textColor="#FF9800" />
             </LinearLayout>
 
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="계정의 대표 캐릭터를 설정합니다.\n계정당 한 캐릭터만 설정 가능합니다."
+                android:text="캐릭터 정보를 수동으로 갱신합니다.\n갱신 시간은 하루 단위로 표시됩니다."
                 android:textColor="#808080"
                 android:textSize="12sp" />
 
@@ -67,6 +67,8 @@
                 android:layout_height="10dp"
                 android:layout_weight="8" />
         </LinearLayout>
+
+
 
 
         <LinearLayout
@@ -116,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:text="우르스 알림 허용"
+                android:text="캐릭터 알림 설정"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -125,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="우르스 알림 (22:00)을 설정합니다.\n대표 캐릭터만 설정 가능합니다."
+                android:text="현재 캐릭터의 알림을 설정합니다.\n기본 설정은 비활성화입니다."
                 android:textColor="#808080"
                 android:textSize="12sp" />
 
@@ -177,10 +179,11 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/daily_contents_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:text="일일 보스 알림 허용"
+                android:text="일일 컨텐츠 알림 설정"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -189,7 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="일일 보스 알림 (22:00)을 설정합니다.\n각 캐릭터 별로 설정할 수 있습니다."
+                android:text="일일 컨텐츠의 알림을 설정할 수 있습니다.\n클릭하여 컨텐츠별 알림을 설정하세요."
                 android:textColor="#808080"
                 android:textSize="12sp" />
 
@@ -203,13 +206,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:orientation="vertical">
-
-            <Switch
-                android:id="@+id/daily_boss_notify_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:orientation="vertical"/>
 
 
         <Space
@@ -241,10 +238,11 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/weekly_contents_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:text="주간 보스 알림 허용"
+                android:text="주간 컨텐츠 알림 설정"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -253,7 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="주간 보스 알림 (수요일 20:00)을 설정합니다.\n각 캐릭터 별로 설정할 수 있습니다."
+                android:text="주간 컨텐츠의 알림을 설정할 수 있습니다.\n클릭하여 컨텐츠별 알림을 설정하세요."
                 android:textColor="#808080"
                 android:textSize="12sp" />
 
@@ -267,13 +265,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:orientation="vertical">
-
-            <Switch
-                android:id="@+id/weekly_boss_notify_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:orientation="vertical"/>
 
 
         <Space

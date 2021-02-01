@@ -14,20 +14,20 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ConfigActivity extends AppCompatActivity {
-    String currentCharacterName = "Temp";
-    TextView configCharacterTextView, mainCharacterTextView, ursusNotifyNameTextView;
-    ImageView mainCharacterChangeButton;
+public class CharacterConfigActivity extends AppCompatActivity {
+    TextView mainCharacterTextView, ursusNotifyNameTextView;
+    ImageView updateCharacterButton;
     CompoundButton switchActivateUrsusNotify, switchActivateDailyBossNotify, switchActivateWeeklyBossNotify;
-    ArrayList<CharacterInfo> characterInfos;
+    String characterID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_config);
+        setContentView(R.layout.activity_character_config);
 
         Intent intent = getIntent();
 
@@ -38,59 +38,20 @@ public class ConfigActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-//        // 현재 캐릭터 이름 TextView
-//        configCharacterTextView = (TextView) findViewById(R.id.current_character_name);
-
-        // 대표 캐릭터 관련 선언
-        mainCharacterTextView = (TextView) findViewById(R.id.main_character_name);
-        mainCharacterChangeButton = (ImageView) findViewById(R.id.update_character_btn);
-
-        // 우르스 알림 선언
-        ursusNotifyNameTextView = (TextView) findViewById(R.id.ursus_notify_name);
-        switchActivateUrsusNotify = (CompoundButton) findViewById(R.id.ursus_notify_btn);
-        switchActivateUrsusNotify.setChecked(PreferenceHelper.getBoolean(getApplicationContext(), Constants.SHARED_PREF_URSUS_KEY));
-
-        // 일일 보스 알림 선언
-        switchActivateDailyBossNotify = (CompoundButton) findViewById(R.id.daily_boss_notify_btn);
-        switchActivateDailyBossNotify.setChecked(PreferenceHelper.getBoolean(getApplicationContext(), Constants.SHARED_PREF_DAILY_BOSS_KEY));
-
-        // 주간 보스 알림 선언
-        switchActivateWeeklyBossNotify = (CompoundButton) findViewById(R.id.weekly_boss_notify_btn);
-        switchActivateWeeklyBossNotify.setChecked(PreferenceHelper.getBoolean(getApplicationContext(), Constants.SHARED_PREF_WEEKLY_BOSS_KEY));
-
         // 캐릭터 정보 초기화
-        characterInfos = (ArrayList<CharacterInfo>) getIntent().getSerializableExtra("Characters");
-        Log.d("config:character", "character infos get : "+ Integer.toString(characterInfos.size()));
+        characterID = intent.getStringExtra("characterId");
 
         initSwitchLayout(WorkManager.getInstance(getApplicationContext()));
     }
 
     // 설정 클릭 초기화
     private void initSwitchLayout(final WorkManager workManager) {
-        // 본캐 버튼 설정
-        String mainCharacterName = PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY);
-        Boolean btnEnable = false;
-
-        // 메인 캐릭터가 선택되어야 우르스 알림 설정 가능
-        if(mainCharacterName.equals("")) {
-            mainCharacterTextView.setText("대표 캐릭터 미설정");
-            switchActivateUrsusNotify.setEnabled(false);
-            ursusNotifyNameTextView.setTextColor(Color.parseColor("#808080"));
-        } else {
-            mainCharacterTextView.setText(mainCharacterName);
-            switchActivateUrsusNotify.setEnabled(true);
-            ursusNotifyNameTextView.setTextColor(Color.parseColor("#000000"));
-        }
-
-        mainCharacterChangeButton.setEnabled(true);
-        mainCharacterChangeButton.setOnClickListener(new View.OnClickListener() {
+        // 캐릭터 정보 갱신 버튼 설정
+        updateCharacterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 대표 캐릭터 설정 액티비티로 이동
-                Intent intent = new Intent(ConfigActivity.this,
-                        MainCharacterChoosePopupActivity.class);
-                intent.putExtra("Characters", characterInfos);
-                startActivityForResult(intent, 1);
+                // 캐릭터 정보 갱신
+                Toast.makeText(getApplicationContext(), "환경 설정", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -173,10 +134,10 @@ public class ConfigActivity extends AppCompatActivity {
                 int result = data.getIntExtra("main_character", 0);
                 Log.d("onActivityResult", "ok :" + Integer.toString(result));
 
-                currentCharacterName = characterInfos.get(result).getNickname();
+//                currentCharacterName = characterInfos.get(result).getNickname();
 
                 // 새로운 창에서 대표 캐릭터 선택
-                PreferenceHelper.setString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY, currentCharacterName);
+//                PreferenceHelper.setString(getApplicationContext(), Constants.SHARED_PREF_MAIN_CHARACTER_KEY, currentCharacterName);
 
                 // 대표 캐릭터 변경 후 환경설정 창 UI 변경
                 switchActivateUrsusNotify.setEnabled(true);

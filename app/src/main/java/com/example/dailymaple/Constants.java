@@ -7,6 +7,9 @@ public class Constants {
     public static final String SHARED_PREF_DAILY_BOSS_KEY = "Daily Boss";
     public static final String SHARED_PREF_WEEKLY_BOSS_KEY = "Weekly Boss";
 
+    public static final String SHARED_PREF_PLATFORM_KEY = "Platform";
+    public static final String SHARED_PREF_USER_KEY = "User";
+
     // Notification Channel ID
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
 
@@ -53,7 +56,26 @@ public class Constants {
     public static void setDailyBossTime(Integer dailyBossTime) {
         DAILY_BOSS_TIME = dailyBossTime;
     }
-    public static void setWeeklyBossTime(Integer weeklyBossTime) {
-        WEEKLY_BOSS_TIME = weeklyBossTime;
-    }
+    public static void setWeeklyBossTime(Integer weeklyBossTime) { WEEKLY_BOSS_TIME = weeklyBossTime; }
+
+    // Daily Contents
+    public static Integer DailyContentsLength = 12;
+    public static String[] DailyContentsName = {
+            "zakum", "hilla",
+            "bloodyqueen", "pierre",
+            "banban", "vellum",
+            "horntail", "vonleon",
+            "magnus", "papulatus",
+            "arkarium", "pinkbean"
+    };
+
+    // Weekly Contents
+    public static Integer WeeklyContentsLength = 10;
+    public static String[] WeeklyContentsName = { // order is important.
+            "zakum", "hilla",
+            "bloodyqueen", "pierre",
+            "banban", "vellum",
+            "magnus", "papulatus",
+            "lotus", "damien"
+    };
 }
