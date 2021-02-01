@@ -10,9 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-import com.google.common.primitives.Ints;
 
 public class ViewProgressActivity extends AppCompatActivity {
 
@@ -42,17 +39,18 @@ public class ViewProgressActivity extends AppCompatActivity {
         WeeklyContents.setOnClickListener(this::onClickWeekly);
 
         intent = getIntent();
-        platform = intent.getStringExtra("platform");
-        userId = intent.getStringExtra("userId");
+
+        platform = PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_PLATFORM_KEY);
+        userId = PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_USER_KEY);
+
         characterId = intent.getStringExtra("characterId");
-        Log.i("characterId", characterId);
+
+        Log.i("ViewProgressActivity", platform + " " + userId + " " + characterId);
 
     }
 
     public void onClickDaily(View v) {
         intent = new Intent(this, ViewDailyContentsActivity.class);
-        intent.putExtra("platform", platform);
-        intent.putExtra("userId", userId);
         intent.putExtra("characterId", characterId);
         startActivity(intent);
     }
