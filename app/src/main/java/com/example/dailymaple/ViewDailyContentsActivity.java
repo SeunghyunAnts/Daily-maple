@@ -15,41 +15,37 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ViewDailyContentsActivity extends AppCompatActivity {
 
-    public static final int LENGTH = 12;
+//    public static final int LENGTH = 12;
     Intent intent;
 
-    ImageView[] dailyContents = new ImageView[LENGTH];
-    ImageView[] clearMark = new ImageView[LENGTH];
-    boolean[] done = new boolean[LENGTH];
-    String[] bossname = { // order is important.
-            "zakum", "hilla",
-            "bloodyqueen", "pierre",
-            "banban", "vellum",
-            "horntail", "vonleon",
-            "magnus", "papulatus",
-            "arkarium", "pinkbean"
-    };
+    ImageView[] dailyContents = new ImageView[Constants.DailyContentsLength];
+    ImageView[] clearMark = new ImageView[Constants.DailyContentsLength];
+    boolean[] done = new boolean[Constants.DailyContentsLength];
+    ArrayList<Boolean> newDone = new ArrayList<>();
 
     String platform;
     String userId;
     String characterId;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference path;
-
-
+    DocumentReference path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +53,10 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_daily_contents);
 
         intent = getIntent();
-        platform = intent.getStringExtra("platform");
-        userId = intent.getStringExtra("userId");
+
+        platform = PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_PLATFORM_KEY);
+        userId = PreferenceHelper.getString(getApplicationContext(), Constants.SHARED_PREF_USER_KEY);
+
         characterId = intent.getStringExtra("characterId");
 
         dailyContents[0] = findViewById(R.id.zakum);
@@ -90,19 +88,89 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
         path = db.collection(platform+"_users")
                 .document(userId)
                 .collection("characters")
-                .document(characterId)
-                .collection("dailycontents");
-        receiveData();
+                .document(characterId);
 
-        for (int i = 0; i < LENGTH; i++) {
+        // 데이터 로딩 -> View 순서로 실행하는 스레드
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    Log.d("thread :", "start thread");
+                    path.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Log.d("thread : ", "DocumentSnapshot data: " + document.getData().get("daily_contents"));
+                                    newDone = (ArrayList<Boolean>) document.getData().get("daily_contents");
+                                    Log.d("thread : ", "save data to newDone[]");
+                                    draw();
+                                    setClick();
+                                } else {
+                                    Log.d("TAG", "No such document");
+                                }
+                            }
+                            else {
+                                Log.d("Error", "get data failed");
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 불러온 정보를 바탕으로 그리기
+    protected void draw() {
+        for(int i = 0; i < Constants.DailyContentsLength; i++) {
+            if (newDone.get(i)) {
+//                done[i] = true;
+                ColorMatrix matrix = new ColorMatrix();
+                matrix.setSaturation(0);
+
+                ColorFilter colorFilter = new ColorMatrixColorFilter(matrix);
+
+                dailyContents[i].setColorFilter(colorFilter);
+                dailyContents[i].setImageAlpha(200);
+
+                Animation animation =  AnimationUtils.loadAnimation(ViewDailyContentsActivity.this, R.anim.fade_in);
+                clearMark[i].startAnimation(animation);
+                clearMark[i].setVisibility(View.VISIBLE);
+            } else {
+//                done[i] = false;
+                dailyContents[i].setColorFilter(null);
+                dailyContents[i].setImageAlpha(255);
+
+                clearMark[i].setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+    // 클릭 이벤트 설정
+    protected void setClick() {
+        // 가져온 배열 로깅
+        Log.d("callback : ", newDone.toString());
+
+        for (int i = 0; i < Constants.DailyContentsLength; i++) {
             ImageView _this = dailyContents[i];
             int finalI = i;
-            System.out.println(i+"번째: "+done[i]);
+
+            Log.d("callback : ", Integer.toString(finalI)+"번째 Array : " + newDone.get(finalI).toString());
+
             _this.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d("callback, click : ", Integer.toString(finalI) + "번째 클릭됨");
                     ImageView iv_tmp = (ImageView) v;
-                    if (done[finalI]) {
+                    if (newDone.get(finalI)) {
                         iv_tmp.setColorFilter(null);
                         iv_tmp.setImageAlpha(255);
 
@@ -120,51 +188,15 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
                         clearMark[finalI].startAnimation(animation);
                         clearMark[finalI].setVisibility(View.VISIBLE);
                     }
-                    done[finalI] = !done[finalI];
+                    newDone.set(finalI, !newDone.get(finalI));
                     Map<String, Object> data = new HashMap<>();
-                    data.put("done", done[finalI]);
-                    data.put("name", bossname[finalI]);
-                    path.document(Integer.toString(finalI)).set(data, SetOptions.merge());
+                    data.put("daily_contents", newDone);
+                    path.set(data, SetOptions.merge());
+//                    data.put("done", done[finalI]);
+//                    data.put("name", bossname[finalI]);
+//                    path.document(Integer.toString(finalI)).set(data, SetOptions.merge());
                 }
             });
         }
-    }
-
-    void receiveData() {
-        path.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    int i = 0;
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d("TAG", document.getId() + " => " + document.getData() + task.getResult().size());
-                        if ((boolean)document.getData().get("done")) {
-                            done[i] = true;
-                            ColorMatrix matrix = new ColorMatrix();
-                            matrix.setSaturation(0);
-
-                            ColorFilter colorFilter = new ColorMatrixColorFilter(matrix);
-
-                            dailyContents[i].setColorFilter(colorFilter);
-                            dailyContents[i].setImageAlpha(200);
-
-                            Animation animation =  AnimationUtils.loadAnimation(ViewDailyContentsActivity.this, R.anim.fade_in);
-                            clearMark[i].startAnimation(animation);
-                            clearMark[i].setVisibility(View.VISIBLE);
-                        } else {
-                            done[i] = false;
-                            dailyContents[i].setColorFilter(null);
-                            dailyContents[i].setImageAlpha(255);
-
-                            clearMark[i].setVisibility(View.INVISIBLE);
-                        }
-                        i++;
-                    }
-                }
-                else {
-                    System.out.println("fail");
-                }
-            }
-        });
     }
 }
