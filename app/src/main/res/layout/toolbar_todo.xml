@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="캐릭터 선택"
+        android:text="메할일"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold" />
