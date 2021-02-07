@@ -276,8 +276,6 @@ public class CharacterActivity extends AppCompatActivity {
 
     public void onClickCharacter(View v){
         intent = new Intent(this, ViewProgressActivity.class);
-//        intent.putExtra("platform", platform);
-//        intent.putExtra("userId", userId);
         intent.putExtra("characterId", characterId[Ints.indexOf(characters_id, v.getId())]);
         startActivity(intent);
     }
@@ -337,6 +335,9 @@ public class CharacterActivity extends AppCompatActivity {
                 user.put("daily_contents_alert", daily_content_alert);
                 user.put("weekly_contents", weekly_content);
                 user.put("weekly_contents_alert", weekly_content_alert);
+
+                // 전체 알림 설정 (기본값 : false)
+                user.put("total_alert", false);
 
                 // 캐릭터 정보를 삽입할 때 까지 Progress dialog 표시
                 progressDialog.show();

@@ -69,6 +69,14 @@ public class Constants {
             "arkarium", "pinkbean"
     };
 
+    public static int[] DailyContentsLayoutId = {
+            R.drawable.zakum, R.drawable.hilla,
+            R.drawable.bloodyqueen, R.drawable.pierre,
+            R.drawable.banban, R.drawable.vellum,
+            R.drawable.horntail, R.drawable.papulatus,
+            R.drawable.arkarium, R.drawable.pinkbean
+    };
+
     // Weekly Contents
     public static Integer WeeklyContentsLength = 10;
     public static String[] WeeklyContentsName = { // order is important.
@@ -78,4 +86,14 @@ public class Constants {
             "magnus", "papulatus",
             "lotus", "damien"
     };
+
+    public static int[] WeeklyContentsLayoutId = {
+            R.drawable.zakum, R.drawable.hilla,
+            R.drawable.bloodyqueen, R.drawable.pierre,
+            R.drawable.banban, R.drawable.vellum,
+            R.drawable.magnus, R.drawable.papulatus,
+            R.drawable.lotus, R.drawable.damien
+    };
+
+
 }

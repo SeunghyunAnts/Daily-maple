@@ -80,11 +80,7 @@ public class ViewProgressActivity extends AppCompatActivity {
             }
             case R.id.action_setting:
                 Intent intent = new Intent(this, CharacterConfigActivity.class);
-
-                intent.putExtra("platform", platform);
-                intent.putExtra("userId", userId);
                 intent.putExtra("characterId", characterId);
-
                 startActivity(intent);
                 return true;
         }
