@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,7 +33,7 @@ import java.util.Map;
 
 public class CharacterConfigActivity extends AppCompatActivity {
     // layout
-    CompoundButton switchActivateUrsusNotify;
+    CompoundButton characterAlertButton;
     Button updateButton;
     LinearLayout dailyNotifyLinearLayout, weeklyNotifyLinearLayout;
 
@@ -84,7 +85,7 @@ public class CharacterConfigActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Log.d("thread :", "start thread");
-                    path.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    Task task = path.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if(task.isSuccessful()) {
@@ -103,6 +104,7 @@ public class CharacterConfigActivity extends AppCompatActivity {
                             }
                         }
                     });
+                    Tasks.await(task);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -127,11 +129,11 @@ public class CharacterConfigActivity extends AppCompatActivity {
             }
         });
 
-        switchActivateUrsusNotify = (CompoundButton) findViewById(R.id.charater_notify_btn);
-        switchActivateUrsusNotify.setChecked(character_alert);
+        characterAlertButton = (CompoundButton) findViewById(R.id.charater_notify_btn);
+        characterAlertButton.setChecked(character_alert);
 
-        // 우르스 버튼 설정
-        switchActivateUrsusNotify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        // 캐릭터 알림 설정
+        characterAlertButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -152,7 +154,10 @@ public class CharacterConfigActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 클릭시 일일 컨텐츠 설정 팝업으로 이동
-                Intent intent = new Intent();
+                Intent intent = new Intent(CharacterConfigActivity.this,
+                        DailyContentsConfigPopupActivity.class);
+                intent.putExtra("CharacterID", characterID);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -161,7 +166,10 @@ public class CharacterConfigActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 클릭시 주간 컨텐츠 설정 팝업으로 이동
-                Intent intent = new Intent();
+                Intent intent = new Intent(CharacterConfigActivity.this,
+                        WeeklyContentsConfigPopupActivity.class);
+                intent.putExtra("CharacterID", characterID);
+                startActivityForResult(intent, 2);
             }
         });
     }

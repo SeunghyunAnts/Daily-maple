@@ -15,7 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyMaple"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CharacterConfigActivity"></activity>
+        <activity android:name=".WeeklyContentsConfigPopupActivity"
+            android:theme="@android:style/Theme.Dialog" ></activity>
+        <activity
+            android:name=".DailyContentsConfigPopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".CharacterConfigActivity" />
         <activity android:name=".ViewWeeklyContentsActivity" />
         <activity
             android:name=".MainCharacterChoosePopupActivity"
