@@ -73,7 +73,8 @@ public class Constants {
             R.drawable.zakum, R.drawable.hilla,
             R.drawable.bloodyqueen, R.drawable.pierre,
             R.drawable.banban, R.drawable.vellum,
-            R.drawable.horntail, R.drawable.papulatus,
+            R.drawable.horntail, R.drawable.vonleon,
+            R.drawable.magnus, R.drawable.papulatus,
             R.drawable.arkarium, R.drawable.pinkbean
     };
 

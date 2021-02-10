@@ -34,6 +34,7 @@ public class ViewWeeklyContentsActivity extends AppCompatActivity {
     ImageView[] weeklyContents = new ImageView[Constants.WeeklyContentsLength];
     ImageView[] clearMark = new ImageView[Constants.WeeklyContentsLength];
     ArrayList<Boolean> newDone = new ArrayList<>();
+    ArrayList<Boolean> isAlert = new ArrayList<>();
 
     String platform;
     String userId;
@@ -94,6 +95,7 @@ public class ViewWeeklyContentsActivity extends AppCompatActivity {
                                 if (document.exists()) {
                                     Log.d("thread : ", "DocumentSnapshot data: " + document.getData().get("weekly_contents"));
                                     newDone = (ArrayList<Boolean>) document.getData().get("weekly_contents");
+                                    isAlert = (ArrayList<Boolean>) document.getData().get("weekly_contents_alert");
                                     Log.d("thread : ", "save data to newDone[]");
                                     draw();
                                     setClick();
@@ -122,8 +124,15 @@ public class ViewWeeklyContentsActivity extends AppCompatActivity {
     // 불러온 정보를 바탕으로 그리기
     protected void draw() {
         for(int i = 0; i < Constants.WeeklyContentsLength; i++) {
-            if (newDone.get(i)) {
-//                done[i] = true;
+            if(!isAlert.get(i)) {
+                ColorMatrix matrix = new ColorMatrix();
+                matrix.setSaturation(0);
+
+                ColorFilter colorFilter = new ColorMatrixColorFilter(matrix);
+
+                weeklyContents[i].setColorFilter(colorFilter);
+                weeklyContents[i].setImageAlpha(200);
+            } else if (newDone.get(i)) {
                 ColorMatrix matrix = new ColorMatrix();
                 matrix.setSaturation(0);
 

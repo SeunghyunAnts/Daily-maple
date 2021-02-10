@@ -39,6 +39,7 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
     ImageView[] clearMark = new ImageView[Constants.DailyContentsLength];
     boolean[] done = new boolean[Constants.DailyContentsLength];
     ArrayList<Boolean> newDone = new ArrayList<>();
+    ArrayList<Boolean> isAlert = new ArrayList<>();
 
     String platform;
     String userId;
@@ -103,6 +104,7 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
                                 if (document.exists()) {
                                     Log.d("thread : ", "DocumentSnapshot data: " + document.getData().get("daily_contents"));
                                     newDone = (ArrayList<Boolean>) document.getData().get("daily_contents");
+                                    isAlert = (ArrayList<Boolean>) document.getData().get("daily_contents_alert");
                                     Log.d("thread : ", "save data to newDone[]");
                                     draw();
                                     setClick();
@@ -131,7 +133,15 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
     // 불러온 정보를 바탕으로 그리기
     protected void draw() {
         for(int i = 0; i < Constants.DailyContentsLength; i++) {
-            if (newDone.get(i)) {
+            if(!isAlert.get(i)) {
+                ColorMatrix matrix = new ColorMatrix();
+                matrix.setSaturation(0);
+
+                ColorFilter colorFilter = new ColorMatrixColorFilter(matrix);
+
+                dailyContents[i].setColorFilter(colorFilter);
+                dailyContents[i].setImageAlpha(200);
+            } else if (newDone.get(i)) {
 //                done[i] = true;
                 ColorMatrix matrix = new ColorMatrix();
                 matrix.setSaturation(0);
@@ -163,40 +173,40 @@ public class ViewDailyContentsActivity extends AppCompatActivity {
             ImageView _this = dailyContents[i];
             int finalI = i;
 
-            Log.d("callback : ", Integer.toString(finalI)+"번째 Array : " + newDone.get(finalI).toString());
+            if(isAlert.get(i)) {
+                _this.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("callback, click : ", Integer.toString(finalI) + "번째 클릭됨");
+                        ImageView iv_tmp = (ImageView) v;
+                        if (newDone.get(finalI)) {
+                            iv_tmp.setColorFilter(null);
+                            iv_tmp.setImageAlpha(255);
 
-            _this.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("callback, click : ", Integer.toString(finalI) + "번째 클릭됨");
-                    ImageView iv_tmp = (ImageView) v;
-                    if (newDone.get(finalI)) {
-                        iv_tmp.setColorFilter(null);
-                        iv_tmp.setImageAlpha(255);
+                            clearMark[finalI].setVisibility(View.INVISIBLE);
+                        } else {
+                            ColorMatrix matrix = new ColorMatrix();
+                            matrix.setSaturation(0);
 
-                        clearMark[finalI].setVisibility(View.INVISIBLE);
-                    } else {
-                        ColorMatrix matrix = new ColorMatrix();
-                        matrix.setSaturation(0);
+                            ColorFilter colorFilter = new ColorMatrixColorFilter(matrix);
 
-                        ColorFilter colorFilter = new ColorMatrixColorFilter(matrix);
+                            iv_tmp.setColorFilter(colorFilter);
+                            iv_tmp.setImageAlpha(200);
 
-                        iv_tmp.setColorFilter(colorFilter);
-                        iv_tmp.setImageAlpha(200);
-
-                        Animation animation =  AnimationUtils.loadAnimation(ViewDailyContentsActivity.this, R.anim.fade_in);
-                        clearMark[finalI].startAnimation(animation);
-                        clearMark[finalI].setVisibility(View.VISIBLE);
-                    }
-                    newDone.set(finalI, !newDone.get(finalI));
-                    Map<String, Object> data = new HashMap<>();
-                    data.put("daily_contents", newDone);
-                    path.set(data, SetOptions.merge());
+                            Animation animation =  AnimationUtils.loadAnimation(ViewDailyContentsActivity.this, R.anim.fade_in);
+                            clearMark[finalI].startAnimation(animation);
+                            clearMark[finalI].setVisibility(View.VISIBLE);
+                        }
+                        newDone.set(finalI, !newDone.get(finalI));
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("daily_contents", newDone);
+                        path.set(data, SetOptions.merge());
 //                    data.put("done", done[finalI]);
 //                    data.put("name", bossname[finalI]);
 //                    path.document(Integer.toString(finalI)).set(data, SetOptions.merge());
-                }
-            });
+                    }
+                });
+            }
         }
     }
 
