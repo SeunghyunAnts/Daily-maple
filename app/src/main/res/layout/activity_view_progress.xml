@@ -76,7 +76,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/daily_progress_percent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -157,7 +157,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/weekly_progress_percent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

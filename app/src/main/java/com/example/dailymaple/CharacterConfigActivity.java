@@ -184,7 +184,7 @@ public class CharacterConfigActivity extends AppCompatActivity {
             }
         } else if (requestCode == 2) {
             // 주간 컨텐츠 팝업 결과
-            if (requestCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
 
             }
         }
