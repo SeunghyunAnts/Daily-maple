@@ -167,8 +167,20 @@ public class ViewProgressActivity extends AppCompatActivity {
 
     public void drawActivity() {
         Log.d("Draw Activity : ", "Start");
-        int daily_contents_clear = 100 * daily[0] / daily[1];
-        int weekly_contents_clear = 100 * weekly[0] / weekly[1];
+        int daily_contents_clear;
+        int weekly_contents_clear;
+
+        if(daily[1] == 0) {
+            daily_contents_clear = 100;
+        } else {
+            daily_contents_clear = 100 * daily[0] / daily[1];
+        }
+
+        if(weekly[1] == 0) {
+            weekly_contents_clear = 100;
+        } else {
+            weekly_contents_clear = 100 * weekly[0] / weekly[1];
+        }
 
         ProgressBar daily_progress = findViewById(R.id.dailyprogress);
         ProgressBar weekly_progress = findViewById(R.id.weeklyprogress);
