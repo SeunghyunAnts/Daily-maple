@@ -25,21 +25,22 @@ English version description [here](#dailymaple)
   
 ## APIs  
 - 카카오 로그인 API (홈페이지 : https://developers.kakao.com/docs/latest/ko/kakaologin/common)  
-- 네이버, 구글 로그인 API (업데이트 예정) <br />  
+- 네이버, 구글 로그인 API (업데이트 예정)
   
-## 스크린샷  
-<img src="/images/1.png" width="180px" height="320px" title="Logo" alt="Logo"></img>  
-<img src="/images/2.png" width="180px" height="320px" title="Add" alt="Add"></img>  
-<img src="/images/3.png" width="180px" height="320px" title="Main" alt="Main"></img>  
-<img src="/images/4.png" width="180px" height="320px" title="Config1" alt="Config1"></img>  
-<img src="/images/5.png" width="180px" height="320px" title="Daily" alt="Daily"></img>  
-<img src="/images/6.png" width="180px" height="320px" title="Weekly" alt="Weekly"></img>  
-<img src="/images/7.png" width="180px" height="320px" title="Progress" alt="Progress"></img>  
-<img src="/images/8.png" width="180px" height="320px" title="Check" alt="Check"></img>  
-<img src="/images/9.png" width="180px" height="320px" title="Config2" alt="Config2"></img>  
+## 스크린샷
+<img src="/images/1.png" width="180px" height="320px" title="Logo" alt="Logo"></img>
+<img src="/images/2.png" width="180px" height="320px" title="Add" alt="Add"></img>
+<img src="/images/3.png" width="180px" height="320px" title="Main" alt="Main"></img>
+<img src="/images/4.png" width="180px" height="320px" title="Config1" alt="Config1"></img>
+<img src="/images/5.png" width="180px" height="320px" title="Daily" alt="Daily"></img>
+<img src="/images/6.png" width="180px" height="320px" title="Weekly" alt="Weekly"></img>
+<img src="/images/7.png" width="180px" height="320px" title="Progress" alt="Progress"></img>
+<img src="/images/8.png" width="180px" height="320px" title="Check" alt="Check"></img>
+<img src="/images/9.png" width="180px" height="320px" title="Config2" alt="Config2"></img>
+
   
 ## 라이센스  
-(추가예정) <br /><br />  
+(추가예정)
   
 ## DailyMaple  
   
@@ -65,18 +66,18 @@ This is an application that records the contents of an online game called Maple 
   
 ## APIs  
 - open API of Kakao login (homepage : https://developers.kakao.com/docs/latest/ko/kakaologin/common)  
-- open API of Naver and Google Login (to be updated) <br />  
+- open API of Naver and Google Login (to be updated)
   
 ## Screenshots  
-<img src="/images/1.png" width="180px" height="320px" title="Logo" alt="Logo"></img>  
-<img src="/images/2.png" width="180px" height="320px" title="Add" alt="Add"></img>  
-<img src="/images/3.png" width="180px" height="320px" title="Main" alt="Main"></img>  
-<img src="/images/4.png" width="180px" height="320px" title="Config1" alt="Config1"></img>  
-<img src="/images/5.png" width="180px" height="320px" title="Daily" alt="Daily"></img>  
-<img src="/images/6.png" width="180px" height="320px" title="Weekly" alt="Weekly"></img>  
-<img src="/images/7.png" width="180px" height="320px" title="Progress" alt="Progress"></img>  
-<img src="/images/8.png" width="180px" height="320px" title="Check" alt="Check"></img>  
-<img src="/images/9.png" width="180px" height="320px" title="Config2" alt="Config2"></img>  
+<img src="/images/1.png" width="180px" height="320px" title="Logo" alt="Logo"></img>
+<img src="/images/2.png" width="180px" height="320px" title="Add" alt="Add"></img>
+<img src="/images/3.png" width="180px" height="320px" title="Main" alt="Main"></img>
+<img src="/images/4.png" width="180px" height="320px" title="Config1" alt="Config1"></img>
+<img src="/images/5.png" width="180px" height="320px" title="Daily" alt="Daily"></img>
+<img src="/images/6.png" width="180px" height="320px" title="Weekly" alt="Weekly"></img>
+<img src="/images/7.png" width="180px" height="320px" title="Progress" alt="Progress"></img>
+<img src="/images/8.png" width="180px" height="320px" title="Check" alt="Check"></img>
+<img src="/images/9.png" width="180px" height="320px" title="Config2" alt="Config2"></img>
   
 ## License  
 (to be updated) <br />
