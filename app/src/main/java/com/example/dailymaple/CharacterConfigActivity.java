@@ -72,7 +72,7 @@ public class CharacterConfigActivity extends AppCompatActivity {
         characterID = intent.getStringExtra("characterId");
 
         // 캐릭터 정보 업데이트 버튼
-        updateButton = findViewById(R.id.character_update_btn);
+//        updateButton = findViewById(R.id.character_update_btn);
 
         // Firestore 경로
         path = db.collection(platform+"_users")
@@ -121,13 +121,13 @@ public class CharacterConfigActivity extends AppCompatActivity {
     // 설정 클릭 초기화
     private void initLayout(final WorkManager workManager) {
 //        // 캐릭터 정보 갱신 버튼 설정
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 캐릭터 정보 갱신
-                Toast.makeText(getApplicationContext(), "환경 설정", Toast.LENGTH_LONG).show();
-            }
-        });
+//        updateButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // 캐릭터 정보 갱신
+//                Toast.makeText(getApplicationContext(), "환경 설정", Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         characterAlertButton = (CompoundButton) findViewById(R.id.charater_notify_btn);
         characterAlertButton.setChecked(character_alert);
